@@ -11,7 +11,7 @@ const Login = () => {
       <form className="flex flex-col items-center">
         <div className="flex flex-col items-center">
           <label htmlFor="userName">User Name</label>
-          <input 
+          <input
             id="userName" 
             className="border border-black-300"
             type="text"
@@ -29,7 +29,11 @@ const Login = () => {
             onChange={e => setPassword(e.target.value)}
           />
         </div>
-        <input type="submit" value="Sign In" className="border border-black-300"/>
+        <input
+          className="border border-black-300"
+          type="submit"
+          value="Sign In"
+        />
       </form>
       <button className="border border-black-300">Sign Up</button>
     </section>
