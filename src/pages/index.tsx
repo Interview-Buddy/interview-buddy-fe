@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Header from '@components/header'
 import Login from '@components/login'
+import SignUp from '@components/signup'
 
 export default function Home() {
   return (
@@ -13,7 +14,8 @@ export default function Home() {
     </Head>
     <main>
       <Header />
-      <Login />
+      {/* <Login /> */}
+      <SignUp />
     </main>
    </>
   )
