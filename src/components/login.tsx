@@ -28,7 +28,7 @@ const Login = () => {
           onChange={e => setPassword(e.target.value)}
         />
       </div>
-      <input type="submit" className="border border-black-300"/>
+      <input type="submit" value="Sign In" className="border border-black-300"/>
     </form>
   )
 }
