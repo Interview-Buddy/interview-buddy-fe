@@ -8,9 +8,9 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
 
   return (
-    <section className="flex flex-col items-center">
-      <form className="flex flex-col items-center box-border 
-        h-80 w-64 p-4 bg-indigo-500">
+    <section className="flex flex-col items-center absolute inset-0 top-20">
+      <form 
+        className="flex flex-col items-center box-border h-80 w-64 p-4 bg-indigo-500">
       <div className="flex flex-col items-center">
           <label htmlFor="userName">User Name</label>
           <input 

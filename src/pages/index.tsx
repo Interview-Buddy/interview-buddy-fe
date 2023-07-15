@@ -2,8 +2,10 @@ import Head from 'next/head'
 import Header from '@components/header'
 import Login from '@components/login'
 import SignUp from '@components/signup'
+import { useState } from 'react'
 
 export default function Home() {
+
   return (
     <>
     <Head>
@@ -14,8 +16,7 @@ export default function Home() {
     </Head>
     <main>
       <Header />
-      {/* <Login /> */}
-      <SignUp />
+      <Login />
     </main>
    </>
   )
