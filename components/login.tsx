@@ -1,18 +1,21 @@
-import { useState } from "react"
+'use client';
+
+import { useState } from "react";
+import { useRouter } from 'next/navigation'
 import SignUp from "./signup";
 
 const Login = () => {
-
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [modal, showModal] = useState(true);
+  const router = useRouter();
 
   return (
     <>
       {modal && <SignUp />}
 
       <section className="flex flex-col items-center">
-        <form className="flex flex-col items-center">
+        <form className="flex flex-col items-center" onSubmit={(event) => {event.preventDefault(), router.push('/dashboard')}}>
           <div className="flex flex-col items-center">
             <label htmlFor="userName">User Name</label>
             <input
