@@ -3,7 +3,7 @@
 import { useState } from "react"
 
 const SignUp = () => {
-  const [userName, setUserName] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [selection, setSelection] = useState('');
@@ -14,13 +14,23 @@ const SignUp = () => {
       <form 
         className="flex flex-col items-center box-border h-80 w-64 p-4 bg-indigo-500">
       <div className="flex flex-col items-center">
-          <label htmlFor="userName">User Name</label>
-          <input 
-            id="userName"
+          <label htmlFor="displayName">Display Name</label>
+          <input
+            id="displayName"
             className="border border-black-300"
             type="text"
-            value={userName}
-            onChange={e => setUserName(e.target.value)}
+            value={displayName}
+            onChange={e => setDisplayName(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col items-center">
+          <label htmlFor="email">Email</label>
+          <input 
+            id="email"
+            className="border border-black-300"
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-center">
@@ -36,21 +46,11 @@ const SignUp = () => {
         <div className="flex flex-col items-center">
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input 
-            id="confirm-password"
+            id="confirmPassword"
             className="border border-black-300"
             type="password"
             value={confirmPassword}
             onChange={e => setConfirmPassword(e.target.value)}
-          />
-        </div>
-        <div className="flex flex-col items-center">
-          <label htmlFor="email">Email</label>
-          <input 
-            id="email"
-            className="border border-black-300"
-            type="password"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-center">
