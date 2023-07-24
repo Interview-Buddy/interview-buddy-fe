@@ -5,9 +5,9 @@ import { useRouter } from 'next/navigation'
 import SignUp from "./signup";
 
 const Login = () => {
-  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [modal, showModal] = useState(true);
+  const [modal, showModal] = useState(false);
   const router = useRouter();
 
   return (
@@ -17,19 +17,19 @@ const Login = () => {
       <section className="flex flex-col items-center">
         <form className="flex flex-col items-center" onSubmit={(event) => {event.preventDefault(), router.push('/dashboard')}}>
           <div className="flex flex-col items-center">
-            <label htmlFor="userName">User Name</label>
+            <label htmlFor="userEmail">Email</label>
             <input
-              id="userName" 
+              id="userEmail"
               className="border border-black-300"
               type="text"
-              value={userName}
-              onChange={e => setUserName(e.target.value)}
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               />
           </div>
           <div className="flex flex-col items-center">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="userPassword">Password</label>
             <input 
-              id="password"
+              id="userPassword"
               className="border border-black-300"
               type="password"
               value={password}
