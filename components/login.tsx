@@ -28,6 +28,7 @@ const Login = () => {
               className="border border-black-300"
               type="text"
               value={email}
+              autoComplete="email"
               onChange={e => setEmail(e.target.value)}
               />
           </div>
@@ -38,6 +39,7 @@ const Login = () => {
               className="border border-black-300"
               type="password"
               value={password}
+              autoComplete="current-password"
               onChange={e => setPassword(e.target.value)}
               />
           </div>
