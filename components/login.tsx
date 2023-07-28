@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 import { useRouter } from 'next/navigation'
 import SignUp from "./signup";
 
@@ -10,13 +10,14 @@ const Login = () => {
   const [modalShow, setModalShow] = useState(false);
   const router = useRouter();
 
-  const modalHandler = () => {
+  const modalHandler = (e: MouseEvent<HTMLButtonElement>):void => {
+    e.preventDefault()
     setModalShow(!modalShow)
   }
 
   return (
     <>
-      {modalShow && <SignUp />}
+      {modalShow && <SignUp modalHandler={modalHandler}/>}
 
       <section className="flex flex-col items-center h-[40rem] place-content-center">
         <form className="flex flex-col items-center" onSubmit={(event) => {event.preventDefault(), router.push('/dashboard')}}>
@@ -48,7 +49,7 @@ const Login = () => {
         </form>
         <button 
           className="border border-black-300"
-          onClick={e => modalHandler()}
+          onClick={e => modalHandler(e)}
           >Sign Up</button>
       </section>
     </>
