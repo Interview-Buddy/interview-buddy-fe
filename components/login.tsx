@@ -18,7 +18,7 @@ const Login = () => {
     <>
       {modalShow && <SignUp />}
 
-      <section className="flex flex-col items-center h-[45rem] place-content-center">
+      <section className="flex flex-col items-center h-[40rem] place-content-center">
         <form className="flex flex-col items-center" onSubmit={(event) => {event.preventDefault(), router.push('/dashboard')}}>
           <div className="flex flex-col items-center">
             <label htmlFor="userEmail">Email</label>
