@@ -10,7 +10,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
 
   return (
-    <section className="flex flex-col items-center absolute inset-0 top-20">
+    <section className="flex flex-col items-center absolute inset-0 top-20 h-[40rem] place-content-center">
       <form 
         className="flex flex-col items-center box-border h-80 w-64 p-4 bg-indigo-500">
       <div className="flex flex-col items-center">
