@@ -1,8 +1,12 @@
 'use client';
 
-import { useState } from "react"
+import { useState, MouseEvent, FC } from "react"
 
-const SignUp = () => {
+interface SignUpProps {
+  modalHandler: (e: MouseEvent<HTMLButtonElement>) => void
+}
+
+const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -13,7 +17,10 @@ const SignUp = () => {
     <section className="flex flex-col items-center absolute inset-0 top-20 h-[40rem] place-content-center">
       <form 
         className="flex flex-col items-center box-border h-80 w-64 p-4 bg-indigo-500">
-      <div className="flex flex-col items-center">
+        <div className="flex justify-end w-56">
+          <button onClick={(e) => modalHandler(e)}>X</button>
+        </div>
+        <div className="flex flex-col items-center">
           <label htmlFor="displayName">Display Name</label>
           <input
             id="displayName"
