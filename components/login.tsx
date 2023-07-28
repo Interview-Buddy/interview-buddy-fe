@@ -33,7 +33,7 @@ const Login = () => {
               />
           </div>
           <div className="flex flex-col items-center">
-            <label htmlFor="userPassword">Password</label>
+            <label htmlFor="userPassword" className="mt-2">Password</label>
             <input 
               id="userPassword"
               className="border border-black-300"
@@ -44,13 +44,13 @@ const Login = () => {
               />
           </div>
           <input
-            className="border border-black-300"
+            className="border border-black-300 mt-2"
             type="submit"
             value="Sign In"
             />
         </form>
         <button 
-          className="border border-black-300"
+          className="border border-black-300 mt-2"
           onClick={e => modalHandler(e)}
           >Sign Up</button>
       </section>
