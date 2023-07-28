@@ -27,6 +27,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             className="border border-black-300"
             type="text"
             value={displayName}
+            autoComplete="name"
             onChange={e => setDisplayName(e.target.value)}
           />
         </div>
@@ -37,6 +38,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             className="border border-black-300"
             type="email"
             value={email}
+            autoComplete="email"
             onChange={e => setEmail(e.target.value)}
           />
         </div>
@@ -47,6 +49,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             className="border border-black-300"
             type="password"
             value={password}
+            autoComplete="current-password"
             onChange={e => setPassword(e.target.value)}
           />
         </div>
@@ -57,6 +60,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             className="border border-black-300"
             type="password"
             value={confirmPassword}
+            autoComplete="current-password"
             onChange={e => setConfirmPassword(e.target.value)}
           />
         </div>
