@@ -44,13 +44,13 @@ const Login = () => {
               />
           </div>
           <input
-            className="border border-black-300 mt-2"
+            className="border border-black-300 mt-2 bg-[#D0F4DE]"
             type="submit"
             value="Sign In"
             />
         </form>
         <button 
-          className="border border-black-300 mt-2"
+          className="border border-black-300 mt-2 bg-[#FF99C8]"
           onClick={e => modalHandler(e)}
           >Sign Up</button>
       </section>
