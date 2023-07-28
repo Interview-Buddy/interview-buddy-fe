@@ -16,7 +16,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   return (
     <section className="flex flex-col items-center absolute inset-0 top-20 h-[40rem] place-content-center">
       <form 
-        className="flex flex-col items-center box-border h-[21rem] w-64 p-4 bg-indigo-500">
+        className="flex flex-col items-center box-border h-[21rem] w-64 p-4 bg-[#E4C1F9]">
         <div className="flex justify-end w-56">
           <button onClick={(e) => modalHandler(e)}>X</button>
         </div>
@@ -77,7 +77,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
         <input 
           type="submit" 
           value="Submit" 
-          className="border border-black-300 mt-3"
+          className="border border-black-300 mt-3 bg-[#D0F4DE]"
         />
       </form>
     </section>
