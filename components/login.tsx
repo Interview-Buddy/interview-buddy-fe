@@ -28,7 +28,7 @@ const Login = () => {
               className="border border-black-300"
               type="text"
               value={email}
-              data-cy="email-input"
+              data-cy="user-email"
               autoComplete="email"
               onChange={e => setEmail(e.target.value)}
               />
@@ -40,7 +40,7 @@ const Login = () => {
               className="border border-black-300"
               type="password"
               value={password}
-              data-cy="password-input"
+              data-cy="user-password"
               autoComplete="current-password"
               onChange={e => setPassword(e.target.value)}
               />
