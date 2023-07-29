@@ -18,55 +18,59 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
       <form 
         className="flex flex-col items-center box-border h-[21rem] w-64 p-4 bg-[#E4C1F9]">
         <div className="flex justify-end w-56">
-          <button onClick={(e) => modalHandler(e)}>X</button>
+          <button data-cy="exit-button" onClick={(e) => modalHandler(e)}>X</button>
         </div>
         <div className="flex flex-col items-center">
-          <label htmlFor="displayName">Display Name</label>
+          <label htmlFor="displayName" data-cy="display-name-label">Display Name</label>
           <input
             id="displayName"
             className="border border-black-300"
             type="text"
             value={displayName}
+            data-cy="display-name"
             autoComplete="name"
             onChange={e => setDisplayName(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-center">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" data-cy="email-label">Email</label>
           <input 
             id="email"
             className="border border-black-300"
             type="email"
             value={email}
+            data-cy="email"
             autoComplete="email"
             onChange={e => setEmail(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-center">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" data-cy="password-label">Password</label>
           <input 
             id="password"
             className="border border-black-300"
             type="password"
             value={password}
+            data-cy="password"
             autoComplete="current-password"
             onChange={e => setPassword(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-center">
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword" data-cy="confirm-password-label">Confirm Password</label>
           <input 
             id="confirmPassword"
             className="border border-black-300"
             type="password"
             value={confirmPassword}
+            data-cy="confirm-password"
             autoComplete="current-password"
             onChange={e => setConfirmPassword(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-center">
-          <label htmlFor="user-type">User Type</label>
-          <select id="user-type" className="w-44"
+          <label htmlFor="user-type" data-cy="user-type-label">User Type</label>
+          <select id="user-type" data-cy="select" className="w-44"
             onChange={e => setSelection(e.target.value)}
           >
             <option value="select">Select Type</option>
@@ -76,7 +80,8 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
         </div>
         <input 
           type="submit" 
-          value="Submit" 
+          value="Submit"
+          data-cy="submit"
           className="border border-black-300 mt-3 bg-[#D0F4DE]"
         />
       </form>
