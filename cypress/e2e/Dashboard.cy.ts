@@ -9,8 +9,11 @@ describe('Dashboard Page', () => {
       cy.get('[data-cy="user-timezone').contains('PST 00:00');
     });
 
-    it.skip('When a user is logged in as a student: the user has the ability to select between behavioral or technical interviews to be displayed.', () => {
-      cy.visit('/dashboard')
+    it('When a user is logged in as a student: the user has the ability to select between behavioral or technical interviews to be displayed.', () => {
+      cy.visit('/dashboard');
+      cy.get('[data-cy="interview-type-label"]').contains('Interview Type')
+      cy.get('[data-cy="select"]').select('behavioral')
+      cy.get('[data-cy="select"]').select('technical')
     });
 
     it.skip('When a user is logged in as a student: the user can see a calendar where interview availability is displayed.', () => {
