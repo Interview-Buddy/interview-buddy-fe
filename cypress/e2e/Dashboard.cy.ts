@@ -1,10 +1,12 @@
 describe('Dashboard Page', () => {
-    it.only('Visits the Dashboard Page when a user is logged in.', () => {
-      cy.visit('/dashboard')
+    it('Visits the Dashboard Page when a user is logged in.', () => {
+      cy.visit('/dashboard');
     });
 
-    it.skip('When a user is logged in as a student: their name and timezone are displayed.', () => {
-      cy.visit('/dashboard')
+    it('When a user is logged in as a student: their name and timezone are displayed.', () => {
+      cy.visit('/dashboard');
+      cy.get('[data-cy="user-displayName"]').contains('Mock Student');
+      cy.get('[data-cy="user-timezone').contains('PST 00:00');
     });
 
     it.skip('When a user is logged in as a student: the user has the ability to select between behavioral or technical interviews to be displayed.', () => {
