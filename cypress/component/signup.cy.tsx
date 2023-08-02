@@ -1,4 +1,4 @@
-import SignUp from "@/components/signup";
+import SignUp from "@components/signup";
 import { useRouter } from "next/navigation";
 import MockNextRouter from "../utils/router";
 
