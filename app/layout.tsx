@@ -16,7 +16,7 @@ export default function RootLayout({
   }) {
     return (
       <html lang="en">
-        <body>
+        <body className='bg-[#A9DEF9]'>
             <Header />
             <main className="max-w-screen-xl mx-auto">
               {children}
