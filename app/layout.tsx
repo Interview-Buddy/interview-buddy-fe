@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
-import Header from '../components/header';
-import '../styles/globals.css';
+import Header from '@components/header';
+import '@styles/globals.css';
  
 export const metadata: Metadata = {
   title: 'Interview Buddy',
