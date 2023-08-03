@@ -7,18 +7,46 @@ interface SignUpProps {
 }
 
 const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [displayName, setDisplayName] = useState('');
+  const [pronouns, setPronouns] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [selection, setSelection] = useState('');
-  const [email, setEmail] = useState('');
+  const [businessName, setBusinessName] = useState('');
 
   return (
     <section className="flex flex-col items-center absolute inset-0 top-20 h-[40rem] place-content-center">
       <form 
-        className="flex flex-col items-center box-border h-[21rem] w-64 p-4 bg-[#E4C1F9]">
+        className="flex flex-col items-center box-border h-[30rem] w-64 p-4 bg-[#E4C1F9]">
         <div className="flex justify-end w-56">
           <button data-cy="exit-button" onClick={(e) => modalHandler(e)}>X</button>
+        </div>
+        <div className="flex flex-col items-center">
+          <label htmlFor="firstName" data-cy="first-name-label">First Name</label>
+          <input
+            id="firstName"
+            className="border border-black-300"
+            type="text"
+            value={firstName}
+            data-cy="first-name"
+            autoComplete="name"
+            onChange={e => setFirstName(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col items-center">
+          <label htmlFor="lastName" data-cy="last-name-label">Last Name</label>
+          <input
+            id="lastName"
+            className="border border-black-300"
+            type="text"
+            value={lastName}
+            data-cy="last-name"
+            autoComplete="name"
+            onChange={e => setLastName(e.target.value)}
+          />
         </div>
         <div className="flex flex-col items-center">
           <label htmlFor="displayName" data-cy="display-name-label">Display Name</label>
@@ -30,6 +58,18 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             data-cy="display-name"
             autoComplete="name"
             onChange={e => setDisplayName(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col items-center">
+          <label htmlFor="pronouns" data-cy="pronouns-label">Pronouns</label>
+          <input
+            id="pronouns"
+            className="border border-black-300"
+            type="text"
+            value={pronouns}
+            data-cy="pronouns"
+            autoComplete="name"
+            onChange={e => setPronouns(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-center">
