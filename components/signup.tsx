@@ -15,7 +15,6 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [selection, setSelection] = useState('');
-  const [businessName, setBusinessName] = useState('');
 
   return (
     <section className="flex flex-col items-center absolute inset-0 top-20 h-[40rem] place-content-center">
@@ -33,6 +32,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             value={firstName}
             data-cy="first-name"
             autoComplete="name"
+            required={true}
             onChange={e => setFirstName(e.target.value)}
           />
         </div>
@@ -45,6 +45,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             value={lastName}
             data-cy="last-name"
             autoComplete="name"
+            required={true}
             onChange={e => setLastName(e.target.value)}
           />
         </div>
@@ -81,6 +82,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             value={email}
             data-cy="email"
             autoComplete="email"
+            required={true}
             onChange={e => setEmail(e.target.value)}
           />
         </div>
@@ -93,6 +95,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             value={password}
             data-cy="password"
             autoComplete="current-password"
+            required={true}
             onChange={e => setPassword(e.target.value)}
           />
         </div>
@@ -105,6 +108,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             value={confirmPassword}
             data-cy="confirm-password"
             autoComplete="current-password"
+            required={true}
             onChange={e => setConfirmPassword(e.target.value)}
           />
         </div>
@@ -112,6 +116,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
           <label htmlFor="user-type" data-cy="user-type-label" className="mt-2">User Type</label>
           <select id="user-type" data-cy="select" className="w-44"
             onChange={e => setSelection(e.target.value)}
+            required={true}
           >
             <option value="select">Select Type</option>
             <option value="student">Student</option>

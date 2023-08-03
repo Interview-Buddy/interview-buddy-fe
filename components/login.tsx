@@ -30,6 +30,7 @@ const Login = () => {
               value={email}
               data-cy="user-email"
               autoComplete="email"
+              required={true}
               onChange={e => setEmail(e.target.value)}
               />
           </div>
@@ -42,6 +43,7 @@ const Login = () => {
               value={password}
               data-cy="user-password"
               autoComplete="current-password"
+              required={true}
               onChange={e => setPassword(e.target.value)}
               />
           </div>
