@@ -56,8 +56,7 @@ const CalendarHeaderToolbar:FC<CalendarHeaderToolbarProps> = props => {
                 <button className="h-9 border-2 p-1" onClick={handleNext} disabled={isLoading}><ChevronRight /></button>
             </div>
             <p className="text-center">{title}</p>
-            <div className="flex flex-col md:flex-row">
-                <label htmlFor="view-type" data-cy="interview-type-label"></label>
+            <div>
                 <select id="view-type" data-cy="select" className="w-35 border-2"
                     onChange={e => handleViewChange(e)}
                     disabled={isLoading}
