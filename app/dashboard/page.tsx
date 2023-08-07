@@ -15,6 +15,7 @@ const mockStudent = {
 
 const Dashboard = () => {
     const [interviewType, setInterviewType] = useState('');
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     //Caused error when not set to any
     const calendarRef = useRef<any>();
 
@@ -36,7 +37,7 @@ const Dashboard = () => {
             </section>
             <section className="p-4 w-full h-full">
                 <div className="p-4 bg-white">
-                    <CalendarHeaderToolbar calendarRef={calendarRef} />
+                    <CalendarHeaderToolbar calendarRef={calendarRef} isLoading={isLoading} />
                     <FullCalendar
                         //Used to reference the calendar and be able to access the Calendar API in the custom headerToolbar
                         ref={calendarRef} 
@@ -50,6 +51,7 @@ const Dashboard = () => {
                         ]}
                         //Set to false so we can create our own header toolbar with custom buttons/actions
                         headerToolbar={false}
+                        viewDidMount={() => setIsLoading(false)}
                     />
                 </div>
             </section>

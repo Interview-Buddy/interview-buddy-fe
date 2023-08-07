@@ -1,12 +1,15 @@
 import React, { FC, useState } from 'react';
 import moment from 'moment';
+import ChevronLeft from '@utilities/ChevronLeft';
+import ChevronRight from '@utilities/ChevronRight';
 
 interface CalendarHeaderToolbarProps {
     calendarRef: any;
+    isLoading: boolean;
 }
-//Working here creating custom headerToolbar. Disable buttons until calendar rendered? Prev/Next icons instead of words.
+
 const CalendarHeaderToolbar:FC<CalendarHeaderToolbarProps> = props => {
-    const { calendarRef } = props;
+    const { calendarRef, isLoading } = props;
     const [title, setTitle] = useState(moment().format("MMMM YYYY"));
 
     const handlePrev = () => {
@@ -46,15 +49,18 @@ const CalendarHeaderToolbar:FC<CalendarHeaderToolbarProps> = props => {
     };
 
     return (
-        <div className="mb-4">
-            <button className="border-2 p-1 mr-2" onClick={handlePrev}>Prev</button>
-            <button className="border-2 p-1 mr-2" onClick={handleToday}>Today</button>
-            <button className="border-2 p-1" onClick={handleNext}>Next</button>
-            <p>{title}</p>
-            <div className="flex flex-row">
-                <label htmlFor="view-type" data-cy="interview-type-label">View:</label>
-                <select id="view-type" data-cy="select" className="ml-2 w-35 border-2"
+        <div className="flex items-center justify-between mb-4">
+            <div className="flex">
+                <button className="h-9 border-2 p-1 mr-2" onClick={handlePrev} disabled={isLoading}><ChevronLeft /></button>
+                <button className="border-2 p-1 mr-2" onClick={handleToday} disabled={isLoading}>Today</button>
+                <button className="h-9 border-2 p-1" onClick={handleNext} disabled={isLoading}><ChevronRight /></button>
+            </div>
+            <p className="text-center">{title}</p>
+            <div className="flex flex-col md:flex-row">
+                <label htmlFor="view-type" data-cy="interview-type-label"></label>
+                <select id="view-type" data-cy="select" className="w-35 border-2"
                     onChange={e => handleViewChange(e)}
+                    disabled={isLoading}
                 >
                     <option value="month">Month</option>
                     <option value="week">Week</option>
@@ -63,6 +69,6 @@ const CalendarHeaderToolbar:FC<CalendarHeaderToolbarProps> = props => {
             </div>
         </div>
     )
-}
+};
 
 export default CalendarHeaderToolbar;
