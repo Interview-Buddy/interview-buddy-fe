@@ -7,10 +7,16 @@ describe('signup component', () => {
     return null
   }
 
-  it('Mounts an input with label for the user\'s display name.', () => {
+  it('Mounts an input with label for the user\'s first name.', () => {
     cy.mount(<MockNextRouter><SignUp modalHandler={modalHandler}/></MockNextRouter>)
-    cy.get('[data-cy="display-name-label"]').contains('Display Name')
-    cy.get('[data-cy="display-name"]').type("Display Name")
+    cy.get('[data-cy="first-name-label"]').contains('First Name')
+    cy.get('[data-cy="first-name"]').type("Leroy")
+  })
+
+  it('Mounts an input with label for the user\'s last name.', () => {
+    cy.mount(<MockNextRouter><SignUp modalHandler={modalHandler}/></MockNextRouter>)
+    cy.get('[data-cy="last-name-label"]').contains('Last Name')
+    cy.get('[data-cy="last-name"]').type("Jenkins")
   })
 
   it('Mounts an input with label for the user\'s email.', () => {
