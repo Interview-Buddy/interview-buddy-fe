@@ -4,6 +4,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import CalendarHeaderToolbar from "@components/CalendarHeaderToolbar";
 
 const mockStudent = {
     displayName: "Mock Student",
@@ -16,22 +17,6 @@ const Dashboard = () => {
     const [interviewType, setInterviewType] = useState('');
     //Caused error when not set to any
     const calendarRef = useRef<any>();
-
-    //Working here creating custom headerToolbar. Break into own component? Add title, month, week, and day buttons. Disable buttons until calendar rendered? Prev/Next icons instead of words.
-    const handlePrev = () => {
-        const calendarApi = calendarRef.current.getApi()
-        calendarApi.prev()
-    }
-
-    const handleToday = () => {
-        const calendarApi = calendarRef.current.getApi()
-        calendarApi.today()
-    }
-
-    const handleNext = () => {
-        const calendarApi = calendarRef.current.getApi()
-        calendarApi.next()
-    }
 
     return (
         <div className="flex flex-col md:flex-row">
@@ -51,12 +36,9 @@ const Dashboard = () => {
             </section>
             <section className="p-4 w-full h-full">
                 <div className="p-4 bg-white">
-                    <div className="mb-4">
-                        <button className="border-2 p-1 mr-2" onClick={handlePrev}>Prev</button>
-                        <button className="border-2 p-1 mr-2" onClick={handleToday}>Today</button>
-                        <button className="border-2 p-1" onClick={handleNext}>Next</button>
-                    </div>
+                    <CalendarHeaderToolbar calendarRef={calendarRef} />
                     <FullCalendar
+                        //Used to reference the calendar and be able to access the Calendar API in the custom headerToolbar
                         ref={calendarRef} 
                         //Used to set the height of the calendar content without scroll
                         contentHeight={'auto'}
