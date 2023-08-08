@@ -34,6 +34,18 @@ describe('Dashboard Page', () => {
       cy.get('[data-cy="date-title"]').contains(moment().add(1, 'months').format("MMMM YYYY"));
     });
 
+    it('When a user is logged in as a student: the user can select to view the calendar as a month, week, or day.', () => {
+      cy.visit('/dashboard');
+      cy.get('.fc-dayGridMonth-view').should('be.visible');
+      cy.get('[data-cy="date-title"]').contains(moment().format("MMMM YYYY"));
+      cy.get('[data-cy="select-view-type"]').select('Week');
+      cy.get('.fc-timeGridWeek-view').should('be.visible');
+      cy.get('[data-cy="select-view-type"]').select('Day');
+      cy.get('.fc-timeGridDay-view').should('be.visible');
+      cy.get('[data-cy="select-view-type"]').select('Month');
+      cy.get('.fc-dayGridMonth-view').should('be.visible');
+    });
+
     it.skip('When a user is logged in as a student: the user has the ability to select the date for when they are looking for an interview.', () => {
       cy.visit('/dashboard')
     });
