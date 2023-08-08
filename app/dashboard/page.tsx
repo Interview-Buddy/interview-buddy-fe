@@ -7,7 +7,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 import CalendarHeaderToolbar from "@components/CalendarHeaderToolbar";
 
 const mockStudent = {
-    displayName: "Mock Student",
+    firstName: "Mock",
+    lastName: "Student",
     id: "1",
     email: "mockStudent@test.com",
     userType: "student"
@@ -22,11 +23,11 @@ const Dashboard = () => {
     return (
         <div className="flex flex-col md:flex-row">
             <section className="flex flex-col p-4">
-                <h2 className="text-2xl" data-cy="user-displayName">{mockStudent.displayName}</h2>
+                <h2 className="text-2xl" data-cy="user-displayName">{`${mockStudent.firstName} ${mockStudent.lastName}`}</h2>
                 <p data-cy="user-timezone">PST 00:00</p>
                 <div className="flex flex-row md:flex-col">
                     <label htmlFor="interview-type" data-cy="interview-type-label">Interview Type:</label>
-                    <select id="interview-type" data-cy="select" className="ml-2 md:ml-0 w-35 border-2"
+                    <select id="interview-type" data-cy="select-interview-type" className="ml-2 md:ml-0 w-35 border-2"
                         onChange={e => setInterviewType(e.target.value)}
                     >
                         <option value="select">Select Type</option>

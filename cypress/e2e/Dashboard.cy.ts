@@ -12,12 +12,13 @@ describe('Dashboard Page', () => {
     it('When a user is logged in as a student: the user has the ability to select between behavioral or technical interviews to be displayed.', () => {
       cy.visit('/dashboard');
       cy.get('[data-cy="interview-type-label"]').contains('Interview Type')
-      cy.get('[data-cy="select"]').select('behavioral')
-      cy.get('[data-cy="select"]').select('technical')
+      cy.get('[data-cy="select-interview-type"]').select('behavioral')
+      cy.get('[data-cy="select-interview-type"]').select('technical')
     });
 
-    it.skip('When a user is logged in as a student: the user can see a calendar where interview availability is displayed.', () => {
-      cy.visit('/dashboard')
+    it('When a user is logged in as a student: the user can see a calendar where interview availability is displayed.', () => {
+      cy.visit('/dashboard');
+      cy.get('.fc-dayGridMonth-view').should('be.visible');
     });
 
     it.skip('When a user is logged in as a student: the user has the ability to select the date for when they are looking for an interview.', () => {

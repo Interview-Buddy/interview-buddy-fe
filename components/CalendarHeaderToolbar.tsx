@@ -57,7 +57,7 @@ const CalendarHeaderToolbar:FC<CalendarHeaderToolbarProps> = props => {
             </div>
             <p className="text-center">{title}</p>
             <div>
-                <select id="view-type" data-cy="select" className="w-35 border-2"
+                <select id="view-type" data-cy="select-view-type" className="w-35 border-2"
                     onChange={e => handleViewChange(e)}
                     disabled={isLoading}
                 >
