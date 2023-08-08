@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 describe('Dashboard Page', () => {
     it('Visits the Dashboard Page when a user is logged in.', () => {
       cy.visit('/dashboard');
@@ -19,6 +21,17 @@ describe('Dashboard Page', () => {
     it('When a user is logged in as a student: the user can see a calendar where interview availability is displayed.', () => {
       cy.visit('/dashboard');
       cy.get('.fc-dayGridMonth-view').should('be.visible');
+    });
+
+    it('When a user is logged in as a student: the user can see the current month and year which is displayed on the calendar. The user can select to view the previous month, today - current month, or next month. The month and year displayed changes accordingly.', () => {
+      cy.visit('/dashboard');
+      cy.get('[data-cy="date-title"]').contains(moment().format("MMMM YYYY"));
+      cy.get('[data-cy="prev"]').click();
+      cy.get('[data-cy="date-title"]').contains(moment().subtract(1, 'months').format("MMMM YYYY"));
+      cy.get('[data-cy="today"]').click();
+      cy.get('[data-cy="date-title"]').contains(moment().format("MMMM YYYY"));
+      cy.get('[data-cy="next"]').click();
+      cy.get('[data-cy="date-title"]').contains(moment().add(1, 'months').format("MMMM YYYY"));
     });
 
     it.skip('When a user is logged in as a student: the user has the ability to select the date for when they are looking for an interview.', () => {

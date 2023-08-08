@@ -51,11 +51,11 @@ const CalendarHeaderToolbar:FC<CalendarHeaderToolbarProps> = props => {
     return (
         <div className="flex items-center justify-between mb-4">
             <div className="flex">
-                <button className="h-9 border-2 p-1 mr-2" onClick={handlePrev} disabled={isLoading}><ChevronLeft /></button>
-                <button className="border-2 p-1 mr-2" onClick={handleToday} disabled={isLoading}>Today</button>
-                <button className="h-9 border-2 p-1" onClick={handleNext} disabled={isLoading}><ChevronRight /></button>
+                <button className="h-9 border-2 p-1 mr-2" data-cy="prev" onClick={handlePrev} disabled={isLoading}><ChevronLeft /></button>
+                <button className="border-2 p-1 mr-2" data-cy="today" onClick={handleToday} disabled={isLoading}>Today</button>
+                <button className="h-9 border-2 p-1" data-cy="next" onClick={handleNext} disabled={isLoading}><ChevronRight /></button>
             </div>
-            <p className="text-center">{title}</p>
+            <p className="text-center" data-cy="date-title">{title}</p>
             <div>
                 <select id="view-type" data-cy="select-view-type" className="w-35 border-2"
                     onChange={e => handleViewChange(e)}
