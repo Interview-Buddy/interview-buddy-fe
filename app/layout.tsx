@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
-import Header from '../components/header';
-import '../styles/globals.css';
+import Header from '@components/header';
+import '@styles/globals.css';
  
 export const metadata: Metadata = {
   title: 'Interview Buddy',
@@ -18,7 +18,9 @@ export default function RootLayout({
       <html lang="en">
         <body className='bg-[#A9DEF9]'>
             <Header />
-            {children}
+            <main className="max-w-screen-xl mx-auto">
+              {children}
+            </main>
         </body>
       </html>
     )

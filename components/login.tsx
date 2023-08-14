@@ -2,7 +2,7 @@
 
 import { useState, MouseEvent } from "react";
 import { useRouter } from 'next/navigation'
-import SignUp from "./signup";
+import SignUp from "@components/signup";
 
 const Login = () => {
   const [email, setEmail] = useState('');

@@ -1,4 +1,4 @@
-import Login from "@/components/login";
+import Login from "@components/login";
 import { useRouter } from "next/navigation";
 import MockNextRouter from "../utils/router";
 
