@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import ChevronLeft from '@utilities/ChevronLeft';
 import ChevronRight from '@utilities/ChevronRight';
 
@@ -10,7 +10,7 @@ interface CalendarHeaderToolbarProps {
 
 const CalendarHeaderToolbar:FC<CalendarHeaderToolbarProps> = props => {
     const { calendarRef, isLoading } = props;
-    const [title, setTitle] = useState(moment().format("MMMM YYYY"));
+    const [title, setTitle] = useState(dayjs().format("MMMM YYYY"));
 
     const handlePrev = () => {
         const calendarApi = calendarRef.current.getApi();

@@ -1,4 +1,4 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 describe('Dashboard Page', () => {
     it('Visits the Dashboard Page when a user is logged in.', () => {
@@ -25,25 +25,27 @@ describe('Dashboard Page', () => {
 
     it('When a user is logged in as a student: the user can see the current month and year which is displayed on the calendar. The user can select to view the previous month, today - current month, or next month. The month and year displayed changes accordingly.', () => {
       cy.visit('/dashboard');
-      cy.get('[data-cy="date-title"]').contains(moment().format("MMMM YYYY"));
+      cy.get('[data-cy="date-title"]').contains(dayjs().format("MMMM YYYY"));
       cy.get('[data-cy="prev"]').click();
-      cy.get('[data-cy="date-title"]').contains(moment().subtract(1, 'months').format("MMMM YYYY"));
+      cy.get('[data-cy="date-title"]').contains(dayjs().subtract(1, 'months').format("MMMM YYYY"));
       cy.get('[data-cy="today"]').click();
-      cy.get('[data-cy="date-title"]').contains(moment().format("MMMM YYYY"));
+      cy.get('[data-cy="date-title"]').contains(dayjs().format("MMMM YYYY"));
       cy.get('[data-cy="next"]').click();
-      cy.get('[data-cy="date-title"]').contains(moment().add(1, 'months').format("MMMM YYYY"));
+      cy.get('[data-cy="date-title"]').contains(dayjs().add(1, 'months').format("MMMM YYYY"));
     });
 
     it('When a user is logged in as a student: the user can select to view the calendar as a month, week, or day.', () => {
       cy.visit('/dashboard');
       cy.get('.fc-dayGridMonth-view').should('be.visible');
-      cy.get('[data-cy="date-title"]').contains(moment().format("MMMM YYYY"));
+      cy.get('[data-cy="date-title"]').contains(dayjs().format("MMMM YYYY"));
       cy.get('[data-cy="select-view-type"]').select('Week');
       cy.get('.fc-timeGridWeek-view').should('be.visible');
       cy.get('[data-cy="select-view-type"]').select('Day');
       cy.get('.fc-timeGridDay-view').should('be.visible');
+      cy.get('[data-cy="date-title"]').contains(dayjs().format("MMMM D, YYYY"));
       cy.get('[data-cy="select-view-type"]').select('Month');
       cy.get('.fc-dayGridMonth-view').should('be.visible');
+      cy.get('[data-cy="date-title"]').contains(dayjs().format("MMMM YYYY"));
     });
 
     it.skip('When a user is logged in as a student: the user has the ability to select the date for when they are looking for an interview.', () => {
