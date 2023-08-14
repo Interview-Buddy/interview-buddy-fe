@@ -16,7 +16,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
 
   const passwordChecker = (): JSX.Element | null => {
     if (password && confirmPassword) {
-      return password === confirmPassword ? <h2>Password matches!</h2> : <h2>Password does not match</h2>
+      return password === confirmPassword ? <h2 className="text-[#D0F4DE]">Password matches!</h2> : <h2 className="text-[#FFE47F]">Password does not match</h2>
     } else {
        return null
     }
