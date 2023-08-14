@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Header from '../components/header';
+import AuthProvider from './auth-provider';
 import '../styles/globals.css';
  
 export const metadata: Metadata = {
@@ -17,8 +18,10 @@ export default function RootLayout({
     return (
       <html lang="en">
         <body className='bg-[#A9DEF9]'>
+          <AuthProvider>
             <Header />
             {children}
+          </AuthProvider>
         </body>
       </html>
     )
