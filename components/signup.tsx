@@ -22,14 +22,14 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
     }
   }
 
-  const heightAdjustor = (notifyHeight:string, defaultHeight:string): string => {
+  const divHeightAdjustor = (notifyHeight:string, defaultHeight:string): string => {
     return password && confirmPassword ? notifyHeight : defaultHeight
   }
 
   return (
     <section className="flex flex-col items-center absolute inset-0 top-20 h-[40rem] place-content-center">
       <form 
-        className={`flex flex-col items-center box-border ${heightAdjustor("h-[28rem]", "h-[26.5rem]")} w-64 p-4 bg-[#E4C1F9]`}>
+        className={`flex flex-col items-center box-border ${divHeightAdjustor("h-[28rem]", "h-[26.5rem]")} w-64 p-4 bg-[#E4C1F9]`}>
         <div className="flex justify-end w-56">
           <button data-cy="exit-button" onClick={(e) => modalHandler(e)}>X</button>
         </div>
