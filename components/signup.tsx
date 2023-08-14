@@ -98,7 +98,9 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             onChange={e => setConfirmPassword(e.target.value)}
           />
         </div>
-        {passwordChecker()}
+        <div data-cy="password-match-message">
+          {passwordChecker()}
+        </div>
         <div className="flex flex-col items-center">
           <label htmlFor="user-type" data-cy="user-type-label" className="mt-2">User Type</label>
           <select id="user-type" data-cy="select" className="w-44"
