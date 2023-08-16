@@ -17,6 +17,7 @@ const Login = () => {
     setModalShow(!modalShow)
   }
 
+  // This submit function will call to firebase first which will retrieve the user's id, then we can set the user's id which will trigger the onAuthStateChanged hook from Firebase
   const submitLogin = (event: { preventDefault: () => any; }) => {
     event.preventDefault();
     user.setUserId("1");

@@ -53,6 +53,8 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
     const [userType, setUserType] = useState<number | null | undefined>(null);
     const { data } = useUser(userId, email);
 
+    // Will need the onAuthStateChanged hook from Firebase which will set the user's email, which will then enable the useUser query to fetch the user's data from the BE
+    // Once that data is retrieved, will set the rest of the user's properties in the useEffect below
     useEffect(() => {
         if (data && data.user !== null && data.user.id === userId) {
             const { user } = data;
