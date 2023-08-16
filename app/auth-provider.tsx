@@ -9,7 +9,7 @@ import {
     SetStateAction,
     useEffect 
 } from 'react';
-import { useUser } from '@/api/user/user';
+import { useUser } from '../api/user/user';
 
 export interface User {
     company: string | null | undefined;
