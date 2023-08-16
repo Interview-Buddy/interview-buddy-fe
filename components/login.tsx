@@ -1,26 +1,34 @@
 'use client';
 
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, useContext } from "react";
 import { useRouter } from 'next/navigation'
 import SignUp from "./signup";
+import { AuthContext } from "@/app/auth-provider";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [modalShow, setModalShow] = useState(false);
   const router = useRouter();
+  const user = useContext(AuthContext);
 
   const modalHandler = (e: MouseEvent<HTMLButtonElement>):void => {
     e.preventDefault()
     setModalShow(!modalShow)
   }
 
+  const submitLogin = (event: { preventDefault: () => any; }) => {
+    event.preventDefault();
+    user.setUserId("1");
+    router.push('/dashboard');
+  };
+
   return (
     <>
       {modalShow && <SignUp modalHandler={modalHandler}/>}
 
       <section className="flex flex-col items-center h-[40rem] place-content-center">
-        <form className="flex flex-col items-center" onSubmit={(event) => {event.preventDefault(), router.push('/dashboard')}}>
+        <form className="flex flex-col items-center" onSubmit={submitLogin}>
           <div className="flex flex-col items-center">
             <label htmlFor="userEmail" data-cy="email-label">Email</label>
             <input
