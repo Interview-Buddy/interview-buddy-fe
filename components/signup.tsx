@@ -14,10 +14,26 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [selection, setSelection] = useState('');
 
+  const passwordChecker = (): JSX.Element | null => {
+    if (password && confirmPassword) {
+      return password === confirmPassword ?
+      <h2 className="text-[#D0F4DE]">Password matches!</h2> :
+      <h2 className="text-[#FFE47F]">Password does not match</h2>
+    } else {
+       return null
+    }
+  }
+
+  const divHeightAdjustor = (notifyHeight:string, defaultHeight:string): string => {
+    return password && confirmPassword ?
+    notifyHeight :
+    defaultHeight
+  }
+
   return (
     <section className="flex flex-col items-center absolute inset-0 top-20 h-[40rem] place-content-center">
       <form 
-        className="flex flex-col items-center box-border h-[27rem] w-64 p-4 bg-[#E4C1F9]">
+        className={`flex flex-col items-center box-border ${divHeightAdjustor("h-[28rem]", "h-[26.5rem]")} w-64 p-4 bg-[#E4C1F9]`}>
         <div className="flex justify-end w-56">
           <button data-cy="exit-button" onClick={(e) => modalHandler(e)}>X</button>
         </div>
@@ -85,6 +101,9 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setConfirmPassword(e.target.value)}
           />
+        </div>
+        <div data-cy="password-match-message">
+          {passwordChecker()}
         </div>
         <div className="flex flex-col items-center">
           <label htmlFor="user-type" data-cy="user-type-label" className="mt-2">User Type</label>
