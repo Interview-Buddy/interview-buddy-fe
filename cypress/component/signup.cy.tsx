@@ -43,4 +43,18 @@ describe('signup component', () => {
     cy.get('[data-cy="select"]').select('student')
     cy.get('[data-cy="select"]').select('alum')
   })
+
+  it('Displays a message when a password match is detected', () => {
+    cy.mount(<MockNextRouter><SignUp modalHandler={modalHandler}/></MockNextRouter>)
+    cy.get('[data-cy="password"]').type("SuP3rS3cr3tPassw0rd!")
+    cy.get('[data-cy="confirm-password"]').type("SuP3rS3cr3tPassw0rd!")
+    cy.get('[data-cy="password-match-message"]').should('have.text', 'Password matches!')
+  })
+
+  it('Displays a message when a password mismatch is detected', () => {
+    cy.mount(<MockNextRouter><SignUp modalHandler={modalHandler}/></MockNextRouter>)
+    cy.get('[data-cy="password"]').type("00psT#!$Passw0rd")
+    cy.get('[data-cy="confirm-password"]').type("D0e$N0tM4tc#")
+    cy.get('[data-cy="password-match-message"]').should('have.text', 'Password does not match')
+  })
 })
