@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import Header from '../components/header';
+import Header from '@components/header';
 import AuthProvider from './auth-provider';
 import QueryProvider from './query-provider';
-import '../styles/globals.css';
+import '@styles/globals.css';
  
 export const metadata: Metadata = {
   title: 'Interview Buddy',
@@ -22,7 +22,9 @@ export default function RootLayout({
           <QueryProvider>
             <AuthProvider>
               <Header />
-              {children}
+              <main className="max-w-screen-xl mx-auto">
+                {children}
+              </main>
             </AuthProvider>
           </QueryProvider>
         </body>

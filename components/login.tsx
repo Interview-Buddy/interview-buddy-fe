@@ -2,7 +2,7 @@
 
 import { useState, MouseEvent, useContext } from "react";
 import { useRouter } from 'next/navigation'
-import SignUp from "./signup";
+import SignUp from "@components/signup";
 import { AuthContext } from "@/app/auth-provider";
 
 const Login = () => {
