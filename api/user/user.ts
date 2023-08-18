@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { request, gql } from "graphql-request";
-// import { endpoint } from '../../app/layout';
+import { endpoint } from '../../app/layout';
 
 const userDocument = gql`
     {
@@ -20,7 +20,7 @@ const userDocument = gql`
 export const useUser = (id: string | undefined, email: string | null) => {
     return useQuery(['user', email], async () => {
         const data : any = await request({
-            url: "https://interview-buddy-be.onrender.com/graphql",
+            url: endpoint,
             document: userDocument,
             variables: { id }
         });
@@ -84,7 +84,7 @@ const createUser = async (createUserInput: CreateUserInput) => {
     }
 
     const data  = await request({
-        url: "https://interview-buddy-be.onrender.com/graphql",
+        url: endpoint,
         document: createUserMutation,
         variables: { input: variables }
      })
