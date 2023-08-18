@@ -3,6 +3,7 @@
 import { useState, MouseEvent, FC } from "react"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../configs/firebase.configs";
+import { useCreateUser } from "../api/user/user";
 
 interface SignUpProps {
   modalHandler: (e: MouseEvent<HTMLButtonElement>) => void
@@ -15,6 +16,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [selection, setSelection] = useState('');
+  const createUser = useCreateUser()
 
   const passwordChecker = (): JSX.Element | null => {
     if (password && confirmPassword) {
@@ -34,9 +36,23 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
 
   const createAccount = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
+    const userInput = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+      userType: 0,
+      pronouns: "pronouns",
+      displayName: "displayName",
+      company: "company"
+     }
     try {
       const createdUser = await createUserWithEmailAndPassword(auth, email, password)
       console.log(createdUser)
+      createUser.mutate(userInput, {
+        onError: (err: unknown) => {console.log(err)},
+        onSuccess: () => {console.log("Hooray!")}
+      })
     } catch (err: unknown) {
       console.log(err)
     }
