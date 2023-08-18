@@ -9,7 +9,17 @@ import {
     SetStateAction,
     useEffect 
 } from 'react';
+
+import {
+    getAuth,
+    signOut,
+    setPersistence,
+    browserLocalPersistence,
+    onAuthStateChanged
+} from 'firebase/auth';
+
 import { useUser } from '../api/user/user';
+import { app } from '../configs/firebase.configs'
 
 export interface User {
     company: string | null | undefined;
@@ -42,6 +52,8 @@ interface AuthProviderProps {
 }
  
 const AuthProvider: FC<AuthProviderProps> = (props) => {
+    const auth = getAuth(app);
+    setPersistence(auth, browserLocalPersistence);
     const [company, setCompany] = useState<string | null | undefined>('');
     const [displayName, setDisplayName] = useState<string | null | undefined>('');
     const [email, setEmail] = useState<string | null>('');
@@ -55,6 +67,26 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
 
     // Will need the onAuthStateChanged hook from Firebase which will set the user's email, which will then enable the useUser query to fetch the user's data from the BE
     // Once that data is retrieved, will set the rest of the user's properties in the useEffect below
+    useEffect(() => {
+        const listen = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                setDisplayName(user.displayName);
+                setEmail(user.email);
+                setUserId(user.uid);
+            } else {
+                setUserId(undefined);
+                setDisplayName('');
+                setEmail('');
+                setIsLoggedIn(false);
+                signOut(auth);
+            }
+        })
+
+        return () => {
+            listen();
+        };
+    }, []);
+
     useEffect(() => {
         if (data && data.user !== null && data.user.id === userId) {
             const { user } = data;
