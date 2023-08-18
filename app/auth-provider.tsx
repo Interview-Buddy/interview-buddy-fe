@@ -19,7 +19,7 @@ import {
 } from 'firebase/auth';
 
 import { useUser } from '../api/user/user';
-import { auth } from '../configs/firebase.configs'
+import { app } from '../configs/firebase.configs'
 
 export interface User {
     company: string | null | undefined;
@@ -52,6 +52,7 @@ interface AuthProviderProps {
 }
  
 const AuthProvider: FC<AuthProviderProps> = (props) => {
+    const auth = getAuth(app)
     setPersistence(auth, browserLocalPersistence);
     const [company, setCompany] = useState<string | null | undefined>('');
     const [displayName, setDisplayName] = useState<string | null | undefined>('');
@@ -60,7 +61,7 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [lastName, setLastName] = useState<string | null | undefined>('');
     const [pronouns, setPronouns] = useState<string | null | undefined>('');
-    const [userId, setUserId] = useState<string | undefined>("1");
+    const [userId, setUserId] = useState<string | undefined>("");
     const [userType, setUserType] = useState<number | null | undefined>(null);
     const { data } = useUser(userId, email);
 
