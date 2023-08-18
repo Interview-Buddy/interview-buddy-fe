@@ -4,7 +4,7 @@ import AuthProvider from './auth-provider';
 import QueryProvider from './query-provider';
 import '@styles/globals.css';
 
-export const endpoint = process.env.REACT_APP_GQL_ENDPOINT_PRODUCTION; // Should this be relocated?
+export const endpoint:string = (process.env.NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION as string);
  
 export const metadata: Metadata = {
   title: 'Interview Buddy',
