@@ -12,6 +12,8 @@
     "cypress:test": "start-server-and-test dev http://localhost:3000 cypress:run"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.32.6",
+    "@tanstack/react-query-devtools": "^4.32.6",
     "@fullcalendar/core": "^6.1.8",
     "@fullcalendar/daygrid": "^6.1.8",
     "@fullcalendar/interaction": "^6.1.8",
@@ -23,6 +25,7 @@
     "dayjs": "^1.11.9",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
+    "graphql-request": "^6.1.0",
     "next": "13.4.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",

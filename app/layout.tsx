@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import Header from '@components/header';
+import AuthProvider from './auth-provider';
+import QueryProvider from './query-provider';
 import '@styles/globals.css';
  
 export const metadata: Metadata = {
@@ -17,10 +19,14 @@ export default function RootLayout({
     return (
       <html lang="en">
         <body className='bg-[#A9DEF9]'>
-            <Header />
-            <main className="max-w-screen-xl mx-auto">
-              {children}
-            </main>
+          <QueryProvider>
+            <AuthProvider>
+              <Header />
+              <main className="max-w-screen-xl mx-auto">
+                {children}
+              </main>
+            </AuthProvider>
+          </QueryProvider>
         </body>
       </html>
     )
