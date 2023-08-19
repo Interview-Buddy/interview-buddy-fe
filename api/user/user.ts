@@ -1,6 +1,7 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { request, gql } from "graphql-request";
-import { endpoint } from '../../app/layout';
+
+const endpoint:string = (process.env.NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION as string);
 
 const userDocument = gql`
     {
