@@ -3,8 +3,6 @@ import Header from '@components/header';
 import AuthProvider from './auth-provider';
 import QueryProvider from './query-provider';
 import '@styles/globals.css';
-
-export const endpoint:string = (process.env.NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION as string);
  
 export const metadata: Metadata = {
   title: 'Interview Buddy',
