@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, MouseEvent, FC } from "react"
+import { useState, MouseEvent, FC, useContext } from "react"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../configs/firebase.configs";
+import { useRouter } from 'next/navigation'
+import { AuthContext } from "../app/auth-provider";
 import { useCreateUser } from "../api/user/user";
 
 interface SignUpProps {
@@ -16,6 +18,8 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [selection, setSelection] = useState('');
+  const user = useContext(AuthContext);
+  const router = useRouter()
   const createUser = useCreateUser()
 
   const passwordChecker = (): JSX.Element | null => {
@@ -36,22 +40,25 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
 
   const createAccount = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    const userInput = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-      userType: 0,
-      pronouns: "pronouns",
-      displayName: "displayName",
-      company: "company"
-     }
     try {
       const createdUser = await createUserWithEmailAndPassword(auth, email, password)
       console.log(createdUser)
-      createUser.mutate(userInput, {
+      createUser.mutate({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        uuid: createdUser.user.uid,
+        userType: 0,
+        pronouns: "pronouns",
+        displayName: "displayName",
+        company: "company"
+       }
+        , {
         onError: (err: unknown) => {console.log(err)},
-        onSuccess: () => {console.log("Hooray!")}
+        onSuccess: () => {
+          user.setUuid(createdUser.user.uid)
+          router.push('/dashboard');
+        }
       })
     } catch (err: unknown) {
       console.log(err)
