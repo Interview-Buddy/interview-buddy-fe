@@ -4,6 +4,9 @@ import { useState, MouseEvent, useContext } from "react";
 import { useRouter } from 'next/navigation'
 import SignUp from "@components/signup";
 import { AuthContext } from "../app/auth-provider";
+import { auth } from "../configs/firebase.configs";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { FirebaseError } from "firebase/app"
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -17,11 +20,18 @@ const Login = () => {
     setModalShow(!modalShow)
   }
 
-  // This submit function will call to firebase first which will retrieve the user's id, then we can set the user's id which will trigger the onAuthStateChanged hook from Firebase
-  const submitLogin = (event: { preventDefault: () => any; }) => {
+  // This submit function will call to firebase first which will retrieve the user's id,
+  // then we can set the user's id which will trigger the onAuthStateChanged hook from Firebase
+  const submitLogin = async (event: { preventDefault: () => any; }) => {
     event.preventDefault();
-    user.setUserId("1");
-    router.push('/dashboard');
+    try {
+      const authenticatedUser = await signInWithEmailAndPassword(auth, email, password)
+      user.setUuid(authenticatedUser.user.uid);
+      router.push('/dashboard');
+    } catch (err: unknown){
+      const errorMessage = err as FirebaseError
+      console.log(errorMessage.message)
+    }
   };
 
   return (
