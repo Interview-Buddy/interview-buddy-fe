@@ -4,7 +4,7 @@ import { request, gql } from "graphql-request";
 const endpoint:string = (process.env.NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION as string);
 
 const userDocument = gql`
-    query user($uuid: String!)
+query user($uuid: String!)
     {
         user ( uuid: $uuid  ) {
             company
