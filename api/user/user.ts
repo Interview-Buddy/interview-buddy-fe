@@ -4,13 +4,14 @@ import { request, gql } from "graphql-request";
 const endpoint:string = (process.env.NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION as string);
 
 const userDocument = gql`
+    query user($uuid: String!)
     {
-        user ( id: "1"  ) {
+        user ( uuid: $uuid  ) {
             company
             displayName
             email
             firstName
-            id
+            uuid
             lastName
             pronouns
             userType
@@ -18,24 +19,24 @@ const userDocument = gql`
     }
 `;
 
-export const useUser = (id: string | undefined, email: string | null) => {
+export const useUser = (uuid: string | undefined, email: string | null) => {
     return useQuery(['user', email], async () => {
         const data : any = await request({
             url: endpoint,
             document: userDocument,
-            variables: { id }
+            variables: { uuid }
         });
         return data
     }, {
-        enabled: id !== undefined && id !== null && id !== ''
+        enabled: uuid !== undefined && uuid !== null && uuid !== ''
     });
 };
 
-interface CreateUserInput { // Need id field for Firebase assigned ID?
+interface CreateUserInput {
     firstName: string
     lastName: string
     email: string
-    password: string
+    uuid: string
     userType: number
     pronouns: string | null
     displayName: string | null
@@ -52,7 +53,7 @@ mutation createUser($input: CreateUserInput!) {
              firstName
              lastName
              email
-             password
+             uuid
              userType
              pronouns
              displayName
@@ -66,7 +67,7 @@ const createUser = async (createUserInput: CreateUserInput) => {
         firstName,
         lastName,
         email,
-        password,
+        uuid,
         userType,
         pronouns,
         displayName,
@@ -77,7 +78,7 @@ const createUser = async (createUserInput: CreateUserInput) => {
         firstName: firstName,
         lastName: lastName,
         email: email,
-        password: password,
+        uuid: uuid,
         userType: userType,
         pronouns: pronouns,
         displayName: displayName,
