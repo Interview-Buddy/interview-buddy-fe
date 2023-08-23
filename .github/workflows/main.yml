@@ -9,9 +9,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Cypress run
+      - name: Run E2E tests
+        uses: cypress-io/github-action@v5
+
+      - name: Run Component Testing
         uses: cypress-io/github-action@v3
         with:
+          install: false
           component: true
           browser: chrome
           build: npm run build
