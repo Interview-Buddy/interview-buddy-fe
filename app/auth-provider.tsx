@@ -32,6 +32,14 @@ export interface User {
     pronouns: string | null | undefined;
     userType: number | null | undefined;
     setUuid: Dispatch<SetStateAction<string | undefined>>;
+    setCompany: Dispatch<SetStateAction<string | null |undefined>>
+    setDisplayName: Dispatch<SetStateAction<string | null |undefined>>
+    setEmail: Dispatch<SetStateAction<string | null>>
+    setFirstName: Dispatch<SetStateAction<string | null |undefined>>
+    setLastName: Dispatch<SetStateAction<string | null |undefined>>
+    setPronouns: Dispatch<SetStateAction<string | null |undefined>>
+    setUserType: Dispatch<SetStateAction<number | null | undefined>>
+    setIsLoggedIn: Dispatch<SetStateAction<boolean>>
 };
  
 export const AuthContext = createContext<User>({
@@ -45,6 +53,14 @@ export const AuthContext = createContext<User>({
     pronouns: null,
     userType: null,
     setUuid: () => {},
+    setCompany: () => {},
+    setDisplayName: () => {},
+    setEmail: () => {},
+    setFirstName: () => {},
+    setLastName: () => {},
+    setPronouns: () => {},
+    setUserType: () => {},
+    setIsLoggedIn:() => {},
 });
 
 interface AuthProviderProps {
@@ -89,7 +105,7 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
     }, []);
 
     useEffect(() => {
-        if (data && data.user !== null && data.user.id === uuid) {
+        if (data && data.user !== null && data.user.uuid === uuid) {
             const { user } = data;
             setCompany(user.company)
             setDisplayName(user.displayName)
@@ -113,7 +129,15 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
             lastName: lastName,
             pronouns: pronouns,
             userType: userType,
-            setUuid: setUuid
+            setUuid: setUuid,
+            setCompany: setCompany,
+            setDisplayName: setDisplayName,
+            setEmail: setEmail,
+            setFirstName: setFirstName,
+            setLastName: setLastName,
+            setPronouns: setPronouns,
+            setUserType: setUserType,
+            setIsLoggedIn: setIsLoggedIn,
         }}>
             {props.children}
         </AuthContext.Provider>
