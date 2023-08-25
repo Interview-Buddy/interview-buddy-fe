@@ -5,26 +5,31 @@ describe('Not Found URL', () => {
 
     // I believe we also will need to stub the initial useUser query in AuthProvider because it calls each time the app is Rendered.
     beforeEach(() => {
-        cy.intercept('POST', "https://interview-buddy-be.onrender.com/graphql", (req) => {
-            //Queries
-            aliasQuery(req, 'User');
-
-            if (hasOperationName(req, 'User')) {
-                req.alias = 'gqlUserQuery'
-        
-                req.reply((res) => {
-                    res.body.data.company = "Bob's Burgers"
-                    res.body.data.user.displayName = "Bob Belcher"
-                    res.body.data.user.email = "bob@burgers.com"
-                    res.body.data.user.firstName = "Bob"
-                    res.body.data.user.id = "1"
-                    res.body.data.user.lastName = "Belcher"
-                    res.body.data.user.pronouns = "he/him"
-                    res.body.data.user.userType = 0
-                    res.body.data.user.uuid = "1a1a1a"
-                })
+        cy.intercept('POST', "https://interview-buddy-be.onrender.com/graphql*", (req) => {
+            if (hasOperationName(req, 'user')) {
+                req.reply(
+                    {
+                        statusCode: 200,
+                        body: {
+                            data: {
+                                user: {
+                                    company: "Bob's Burgers",
+                                    displayName: "Bob Belch",
+                                    email: "bob@burgers.com",
+                                    firstName: "Bob",
+                                    lastName: "Belcher",
+                                    pronouns: "he/him",
+                                    userType: 0,
+                                    uuid: "1a1a1a"
+                                }
+                            }
+                        }
+                    }
+                )
             }
-        });
+        }).as("gqluserQuery");
+        cy.visit('/');
+        cy.wait('@gqluserQuery');
     });
 
     it('Displays an error message when an invalid url path is entered and a link to redirect the user.', () => {
