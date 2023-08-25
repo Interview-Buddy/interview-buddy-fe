@@ -90,7 +90,6 @@ const createUser = async (createUserInput: CreateUserInput) => {
         document: createUserMutation,
         variables: { input: variables }
      })
-     console.log(data)
      return data
 }
 

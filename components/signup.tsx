@@ -42,7 +42,6 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
     e.preventDefault()
     try {
       const createdUser = await createUserWithEmailAndPassword(auth, email, password)
-      console.log(createdUser)
       createUser.mutate({
         firstName: firstName,
         lastName: lastName,

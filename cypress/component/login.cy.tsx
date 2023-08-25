@@ -1,5 +1,4 @@
 import Login from "@components/login";
-import { useRouter } from "next/navigation";
 import MockNextRouter from "../utils/router";
 
 describe('login component', () => {
@@ -20,7 +19,7 @@ describe('login component', () => {
     cy.get('[data-cy="signin"]').should('have.value', 'Sign In');
   })
 
-  it('Disables the submit button until the user enters a valid email address.', () => {
+  it.skip('Disables the submit button until the user enters a valid email address.', () => {
     // cy.mount()
   })
 })
