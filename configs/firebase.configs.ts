@@ -1,10 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } from "firebase/analytics";
 import { getAuth } from 'firebase/auth';
 
+const apiKey:string = (process.env.NEXT_PUBLIC_PRODUCTION_FIREBASE_API_KEY as string);
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCPsDywdGHulSwvPzOhLnT1mG7ErfrcATM",
+  apiKey: apiKey,
   authDomain: "interview-buddy-42e9a.firebaseapp.com",
   projectId: "interview-buddy-42e9a",
   storageBucket: "interview-buddy-42e9a.appspot.com",
