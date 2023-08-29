@@ -32,14 +32,6 @@ export interface User {
     pronouns: string | null | undefined;
     userType: number | null | undefined;
     setUuid: Dispatch<SetStateAction<string | undefined>>;
-    setCompany: Dispatch<SetStateAction<string | null |undefined>>
-    setDisplayName: Dispatch<SetStateAction<string | null |undefined>>
-    setEmail: Dispatch<SetStateAction<string | null>>
-    setFirstName: Dispatch<SetStateAction<string | null |undefined>>
-    setLastName: Dispatch<SetStateAction<string | null |undefined>>
-    setPronouns: Dispatch<SetStateAction<string | null |undefined>>
-    setUserType: Dispatch<SetStateAction<number | null | undefined>>
-    setIsLoggedIn: Dispatch<SetStateAction<boolean>>
 };
  
 export const AuthContext = createContext<User>({
@@ -53,14 +45,6 @@ export const AuthContext = createContext<User>({
     pronouns: null,
     userType: null,
     setUuid: () => {},
-    setCompany: () => {},
-    setDisplayName: () => {},
-    setEmail: () => {},
-    setFirstName: () => {},
-    setLastName: () => {},
-    setPronouns: () => {},
-    setUserType: () => {},
-    setIsLoggedIn:() => {},
 });
 
 interface AuthProviderProps {
@@ -78,7 +62,7 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
     const [lastName, setLastName] = useState<string | null | undefined>('');
     const [pronouns, setPronouns] = useState<string | null | undefined>('');
     const [uuid, setUuid] = useState<string | undefined>("");
-    const [userType, setUserType] = useState<number | null | undefined>(null);
+    const [userType, setUserType] = useState<number | null | undefined>(undefined);
     const { data } = useUser(uuid, email);
 
     // Will need the onAuthStateChanged hook from Firebase which will set the user's email,
@@ -91,9 +75,14 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
                 setEmail(user.email);
                 setUuid(user.uid);
             } else {
-                setUuid(undefined);
+                setFirstName('')
+                setLastName('')
                 setDisplayName('');
+                setPronouns('')
+                setUuid('');
                 setEmail('');
+                setUserType(undefined)
+                setCompany('')
                 setIsLoggedIn(false);
                 signOut(auth);
             }
@@ -130,14 +119,6 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
             pronouns: pronouns,
             userType: userType,
             setUuid: setUuid,
-            setCompany: setCompany,
-            setDisplayName: setDisplayName,
-            setEmail: setEmail,
-            setFirstName: setFirstName,
-            setLastName: setLastName,
-            setPronouns: setPronouns,
-            setUserType: setUserType,
-            setIsLoggedIn: setIsLoggedIn,
         }}>
             {props.children}
         </AuthContext.Provider>
