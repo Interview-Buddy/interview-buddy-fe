@@ -1,6 +1,11 @@
 'use client';
 
-import { useState, MouseEvent, FC } from "react"
+import { useState, MouseEvent, FC, useContext } from "react"
+import { createUserWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../configs/firebase.configs";
+import { useRouter } from 'next/navigation'
+import { AuthContext } from "../app/auth-provider";
+import { useCreateUser } from "../api/user/user";
 
 interface SignUpProps {
   modalHandler: (e: MouseEvent<HTMLButtonElement>) => void
@@ -13,6 +18,9 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [selection, setSelection] = useState('');
+  const user = useContext(AuthContext);
+  const router = useRouter()
+  const createUser = useCreateUser()
 
   const passwordChecker = (): JSX.Element | null => {
     if (password && confirmPassword) {
@@ -30,9 +38,35 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
     defaultHeight
   }
 
+  const createAccount = async (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    try {
+      const createdUser = await createUserWithEmailAndPassword(auth, email, password)
+      createUser.mutate({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        uuid: createdUser.user.uid,
+        userType: 0,
+        pronouns: "pronouns",
+        displayName: "displayName",
+        company: "company"
+       }
+        , {
+        onError: (err: unknown) => {console.log(err)},
+        onSuccess: () => {
+          user.setUuid(createdUser.user.uid)
+          router.push('/dashboard');
+        }
+      })
+    } catch (err: unknown) {
+      console.log(err)
+    }
+  }
+
   return (
     <section className="flex flex-col items-center absolute inset-0 top-20 h-[40rem] place-content-center">
-      <form 
+      <form onSubmit={createAccount}
         className={`flex flex-col items-center box-border ${divHeightAdjustor("h-[28rem]", "h-[26.5rem]")} w-64 p-4 bg-[#E4C1F9]`}>
         <div className="flex justify-end w-56">
           <button data-cy="exit-button" onClick={(e) => modalHandler(e)}>X</button>
