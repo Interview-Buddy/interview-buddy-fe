@@ -1,4 +1,4 @@
-import { MouseEvent, useContext } from "react"
+import { MouseEvent } from "react"
 import { signOut } from "firebase/auth"
 import { auth } from "../configs/firebase.configs"
 import { FirebaseError } from "firebase/app"
@@ -19,11 +19,9 @@ const LogOutButton = () => {
   }
 
   return (
-    <div>
-      <button className="bg-[#FF99C8] w-20 mr-2 mt-2 rounded-full" 
-        onClick={(e)=> logout(e)}>Log Out</button>
+    <div className="flex items-center">
+      <button className="bg-white w-20 rounded-full m-4" onClick={(e)=> logout(e)} data-cy="log-out-button">Log Out</button>
     </div>
-    
   )
 }
 

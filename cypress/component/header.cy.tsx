@@ -1,4 +1,33 @@
+import { FC, ReactNode, useState } from "react";
+import { AuthContext } from "../../app/auth-provider";
 import Header from "@components/header";
+import MockNextRouter from "../utils/router";
+
+interface AuthProviderProps {
+  isLoggedIn: boolean;
+  children: ReactNode;
+}
+
+const AuthProvider: FC<AuthProviderProps> = (props) => {
+  const [uuid, setUuid] = useState<string | undefined>("");
+
+  return (
+      <AuthContext.Provider value={{
+          company: "test",
+          displayName: "test",
+          email: "test@test.com",
+          firstName: "test",
+          isLoggedIn: props.isLoggedIn,
+          uuid: uuid,
+          lastName: "test",
+          pronouns: "test",
+          userType: 0,
+          setUuid: setUuid,
+      }}>
+          {props.children}
+      </AuthContext.Provider>
+  )
+};
 
 describe('Header component', () => {
   it('Mounts a Header tag.', () => {
@@ -16,7 +45,8 @@ describe('Header component', () => {
     cy.mount(<Header />);
   });
 
-  it.skip('Displays a Logout Button when a user is logged in.', () => {
-    cy.mount(<Header />);
+  it('Displays a Logout Button when a user is logged in.', () => {
+    cy.mount(<MockNextRouter><AuthProvider isLoggedIn={true}><Header /></AuthProvider></MockNextRouter>);
+    cy.get('[data-cy="log-out-button"]').should("be.visible");
   });
 });
