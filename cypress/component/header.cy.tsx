@@ -41,8 +41,9 @@ describe('Header component', () => {
     cy.get('h1 > a').should('have.attr', 'href', '/');
   });
 
-  it.skip('Does not display a Logout Button when a user is not logged in.', () => {
-    cy.mount(<Header />);
+  it('Does not display a Logout Button when a user is not logged in.', () => {
+    cy.mount(<MockNextRouter><AuthProvider isLoggedIn={false}><Header /></AuthProvider></MockNextRouter>);
+    cy.get('[data-cy="log-out-button"]').should('not.exist');
   });
 
   it('Displays a Logout Button when a user is logged in.', () => {
