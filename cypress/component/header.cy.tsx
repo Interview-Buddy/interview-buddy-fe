@@ -6,8 +6,10 @@ describe('Header component', () => {
     cy.get('header').should('be.visible');
   });
 
-  it.skip('Contains an h1 tag that contains an img tag that is the application logo with a proper alt attribute for accessibility. This title img is also a link to the root URL.', () => {
+  it('Contains an h1 tag that is the name of the application. This h1 is also a link to the root URL.', () => {
     cy.mount(<Header />);
+    cy.get('h1').contains('Interview Buddy').should('be.visible');
+    cy.get('h1 > a').should('have.attr', 'href', '/');
   });
 
   it.skip('Does not display a Logout Button when a user is not logged in.', () => {
