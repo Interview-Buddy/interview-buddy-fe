@@ -5,11 +5,7 @@ describe('Header component', () => {
     cy.mount(<Header />);
   });
 
-  it.skip('Contains an h1 tag that is the title of the application, this title is also a link to the root URL.', () => {
-    cy.mount(<Header />);
-  });
-
-  it.skip('Contains an img tag that is the application logo with a proper alt attribute for accessibility.', () => {
+  it.skip('Contains an h1 tag that contains an img tag that is the application logo with a proper alt attribute for accessibility. This title img is also a link to the root URL.', () => {
     cy.mount(<Header />);
   });
 
