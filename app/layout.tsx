@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Header from '@components/Header';
+import Header from '@components/header';
 import AuthProvider from './auth-provider';
 import QueryProvider from './query-provider';
 import '@styles/globals.css';
