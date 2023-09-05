@@ -30,7 +30,7 @@ export interface User {
     uuid: string | undefined | undefined;
     lastName: string | null | undefined;
     pronouns: string | null | undefined;
-    userType: number | null | undefined;
+    userType: string | null | undefined;
     setUuid: Dispatch<SetStateAction<string | undefined>>;
 };
  
@@ -62,7 +62,7 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
     const [lastName, setLastName] = useState<string | null | undefined>('');
     const [pronouns, setPronouns] = useState<string | null | undefined>('');
     const [uuid, setUuid] = useState<string | undefined>("");
-    const [userType, setUserType] = useState<number | null | undefined>(undefined);
+    const [userType, setUserType] = useState<string | null | undefined>(undefined);
     const { data } = useUser(uuid, email);
 
     // Will need the onAuthStateChanged hook from Firebase which will set the user's email,

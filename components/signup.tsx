@@ -17,7 +17,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [selection, setSelection] = useState('');
+  const [userType, setUserType] = useState(3);
   const user = useContext(AuthContext);
   const router = useRouter()
   const createUser = useCreateUser()
@@ -47,7 +47,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
         lastName: lastName,
         email: email,
         uuid: createdUser.user.uid,
-        userType: 0,
+        userType: userType,
         pronouns: "pronouns",
         displayName: "displayName",
         company: "company"
@@ -142,12 +142,12 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
         <div className="flex flex-col items-center">
           <label htmlFor="user-type" data-cy="user-type-label" className="mt-2">User Type</label>
           <select id="user-type" data-cy="select" className="w-44"
-            onChange={e => setSelection(e.target.value)}
+            onChange={e => setUserType(Number(e.target.value))}
             required={true}
           >
-            <option value="select">Select Type</option>
-            <option value="student">Student</option>
-            <option value="alum">Alum</option>
+            <option value="3">Select Type</option>
+            <option value="0">Student</option>
+            <option value="1">Alum</option>
           </select>
         </div>
         <input 
