@@ -141,7 +141,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
         </div>
         <div className="flex flex-col items-center">
           <label htmlFor="user-type" data-cy="user-type-label" className="mt-2">User Type</label>
-          <select id="user-type" data-cy="select" className="w-44"
+          <select id="user-type" data-cy="select-user-type" className="w-44"
             onChange={e => setUserType(Number(e.target.value))}
             required={true}
           >
