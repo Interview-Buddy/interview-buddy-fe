@@ -21,7 +21,7 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
           uuid: uuid,
           lastName: "test",
           pronouns: "test",
-          userType: 0,
+          userType: "student",
           setUuid: setUuid,
       }}>
           {props.children}
