@@ -79,7 +79,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             type="text"
             value={firstName}
             data-cy="first-name"
-            autoComplete="name"
+            autoComplete="given-name"
             required={true}
             onChange={e => setFirstName(e.target.value)}
           />
@@ -92,7 +92,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             type="text"
             value={lastName}
             data-cy="last-name"
-            autoComplete="name"
+            autoComplete="family-name"
             required={true}
             onChange={e => setLastName(e.target.value)}
           />
@@ -145,7 +145,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             onChange={e => setUserType(Number(e.target.value))}
             required={true}
           >
-            <option value="3">Select Type</option>
+            <option value="">Select Type</option>
             <option value="0">Student</option>
             <option value="1">Alum</option>
           </select>
