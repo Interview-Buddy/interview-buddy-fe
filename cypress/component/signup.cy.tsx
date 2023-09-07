@@ -43,8 +43,8 @@ describe('signup component', () => {
 
   it('Mounts an input with label for the user\'s user type selection.', () => {
     cy.get('[data-cy="user-type-label"]').contains('User Type')
-    cy.get('[data-cy="select"]').select('student')
-    cy.get('[data-cy="select"]').select('alum')
+    cy.get('[data-cy="select-user-type"]').select('0')
+    cy.get('[data-cy="select-user-type"]').select('1')
   })
 
   it('Displays a message when a password match is detected', () => {
