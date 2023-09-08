@@ -67,16 +67,18 @@ const Login = () => {
               />
           </div>
           <input
-            className="border border-black-300 mt-2 bg-[#D0F4DE]"
+            className="border border-black-300 mt-2 bg-[#D0F4DE] hover:cursor-pointer"
             type="submit"
             data-cy="signin"
             value="Sign In"
-            />
+            disabled={user.isLoggedIn}
+          />
         </form>
         <button 
           className="border border-black-300 mt-2 bg-[#FF99C8]"
           onClick={e => modalHandler(e)}
           data-cy="signup-button"
+          disabled={user.isLoggedIn}
           >Sign Up</button>
       </section>
     </>
