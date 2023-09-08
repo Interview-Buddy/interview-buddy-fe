@@ -151,10 +151,11 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
           </select>
         </div>
         <input 
+          className="border border-black-300 mt-3 bg-[#D0F4DE] hover:cursor-pointer"
           type="submit" 
           value="Submit"
           data-cy="submit"
-          className="border border-black-300 mt-3 bg-[#D0F4DE]"
+          disabled={user.isLoggedIn}
         />
       </form>
     </section>
