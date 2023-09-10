@@ -4,19 +4,19 @@ import { AuthContext } from '../auth-provider';
 
 const Layout = (
     { 
-    alumuser,
-    studentuser
+    alum,
+    student
     }: {
-    alumuser: React.ReactNode
-    studentuser: React.ReactNode
+    alum: React.ReactNode
+    student: React.ReactNode
     }) => {
     
     const user = useContext(AuthContext);
         
     return (
         <>
-            {(user.isLoggedIn && user.userType === "alum") && alumuser}
-            {(user.isLoggedIn && user.userType === "student") && studentuser}
+            {(user.isLoggedIn && user.userType === "alum") && alum}
+            {(user.isLoggedIn && user.userType === "student") && student}
         </>
     )
 }
