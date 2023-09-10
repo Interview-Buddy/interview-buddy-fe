@@ -1,29 +1,23 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import CalendarHeaderToolbar from "@components/CalendarHeaderToolbar";
-
-const mockStudent = {
-    firstName: "Mock",
-    lastName: "Student",
-    id: "1",
-    email: "mockStudent@test.com",
-    userType: "student"
-}
+import { AuthContext } from "../../auth-provider";
 
 const StudentUser = () => {
     const [interviewType, setInterviewType] = useState('');
     const [isLoading, setIsLoading] = useState<boolean>(true);
     //Caused error when not set to any
     const calendarRef = useRef<any>();
+    const user = useContext(AuthContext);
 
   return (
     <div className="flex flex-col md:flex-row">
         <section className="flex flex-col p-4">
-            <h2 className="text-2xl" data-cy="user-displayName">{`${mockStudent.firstName} ${mockStudent.lastName}`}</h2>
+            <h2 className="text-2xl" data-cy="user-displayName">{`${user.firstName} ${user.lastName}`}</h2>
             <p data-cy="user-timezone">PST 00:00</p>
             <div className="flex flex-row md:flex-col">
                 <label htmlFor="interview-type" data-cy="interview-type-label">Interview Type:</label>
