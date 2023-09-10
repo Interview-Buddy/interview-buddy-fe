@@ -19,12 +19,21 @@ const StudentUser = () => {
         <section className="flex flex-col p-4">
             <h2 className="text-2xl" data-cy="user-displayName">{`${user.firstName} ${user.lastName}`}</h2>
             <p data-cy="user-timezone">PST 00:00</p>
-            <div className="flex flex-row md:flex-col">
-                <label htmlFor="interview-type" data-cy="interview-type-label">Interview Type:</label>
-                <select id="interview-type" data-cy="select-interview-type" className="ml-2 md:ml-0 w-35 border-2"
+            <div className="flex flex-row md:flex-col mt-2">
+                <label 
+                    htmlFor="interview-type" 
+                    data-cy="interview-type-label"
+                    className="text-lg"
+                >
+                    Interview Type:
+                </label>
+                <select 
+                    id="interview-type" 
+                    data-cy="select-interview-type" 
+                    className="ml-2 md:ml-0 w-35 border-2 h-8"
                     onChange={e => setInterviewType(e.target.value)}
                 >
-                    <option value="select">Select Type</option>
+                    <option value="">Select Type</option>
                     <option value="behavioral">Behavioral</option>
                     <option value="technical">Technical</option>
                 </select>
