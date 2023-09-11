@@ -19,8 +19,18 @@ const AlumUser = () => {
   const calendarRef = useRef<any>();
   const user = useContext(AuthContext);
 
-  const createMeetSlots = (e: { preventDefault: () => void }) => {
+  const createMeetingSlots = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    const meeting = {
+      date: interviewDate,
+      endTime: availabilityEnd,
+      interviewType: interviewType,
+      startTime: availabilityStart,
+      studentId: null,
+      title: null,
+      userId: user.uuid
+    }
+    console.log(meeting)
   };
 
   return (
@@ -28,7 +38,7 @@ const AlumUser = () => {
       <section className="flex flex-col p-4">
         <h2 className="text-2xl" data-cy="user-displayName">{`${user.firstName} ${user.lastName}`}</h2>
         <p data-cy="user-timezone">PST 00:00</p>
-        <form onSubmit={createMeetSlots}>
+        <form onSubmit={createMeetingSlots}>
           <div className="flex flex-row md:flex-col mt-2">
             <label 
               htmlFor="interview-date" 
@@ -43,6 +53,7 @@ const AlumUser = () => {
               data-cy="interview-date"
               className="ml-2 md:ml-0 w-35 border-2 h-8"
               onChange={e => setInterviewDate(dayjs(e.target.value).format('YYYY-MM-DDTHH:mm:ssZ[Z]'))}
+              required
             />
           </div>
           <div className="flex flex-row md:flex-col mt-2">
@@ -97,6 +108,8 @@ const AlumUser = () => {
               data-cy="availability-start"
               className="ml-2 md:ml-0 w-35 border-2 h-8"
               onChange={e => setAvailabilityStart(e.target.value)}
+              max={availabilityEnd ? availabilityEnd : undefined}
+              required
             />
           </div>
           <div className="flex flex-row md:flex-col mt-2">
@@ -112,6 +125,7 @@ const AlumUser = () => {
               data-cy="availability-end"
               className="ml-2 md:ml-0 w-35 border-2 h-8"
               onChange={e => setAvailabilityEnd(e.target.value)}
+              required
             />
           </div>
           <div className="flex flex-col">
