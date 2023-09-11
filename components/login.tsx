@@ -70,7 +70,7 @@ const Login = () => {
               />
           </div>
           <input
-            className="border border-black-300 mt-2 bg-[#D0F4DE] hover:cursor-pointer disabled:blur-sm"
+            className="border border-black-300 mt-2 bg-[#D0F4DE] hover:cursor-pointer disabled:cursor-not-allowed"
             type="submit"
             data-cy="signin"
             value="Sign In"
@@ -78,7 +78,7 @@ const Login = () => {
           />
         </form>
         <button 
-          className="border border-black-300 mt-2 bg-[#FF99C8] disabled:blur-sm"
+          className="border border-black-300 mt-2 bg-[#FF99C8] disabled:cursor-not-allowed"
           onClick={e => modalHandler(e)}
           data-cy="signup-button"
           disabled={isLoading || user.isLoggedIn}

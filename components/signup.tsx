@@ -157,7 +157,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
           </select>
         </div>
         <input 
-          className="border border-black-300 mt-3 bg-[#D0F4DE] hover:cursor-pointer disabled:blur-sm"
+          className="border border-black-300 mt-3 bg-[#D0F4DE] hover:cursor-pointer disabled:cursor-not-allowed"
           type="submit" 
           value="Submit"
           data-cy="submit"
