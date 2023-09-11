@@ -12,6 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [modalShow, setModalShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter();
   const user = useContext(AuthContext);
 
@@ -24,6 +25,7 @@ const Login = () => {
   // then we can set the user's id which will trigger the onAuthStateChanged hook from Firebase
   const submitLogin = async (event: { preventDefault: () => any; }) => {
     event.preventDefault();
+    setIsLoading(true)
     try {
       const authenticatedUser = await signInWithEmailAndPassword(auth, email, password)
       user.setUuid(authenticatedUser.user.uid);
@@ -32,6 +34,7 @@ const Login = () => {
       const errorMessage = err as FirebaseError
       console.log(errorMessage.message)
     }
+    setIsLoading(false)
   };
 
   return (
@@ -67,18 +70,18 @@ const Login = () => {
               />
           </div>
           <input
-            className="border border-black-300 mt-2 bg-[#D0F4DE] hover:cursor-pointer"
+            className="border border-black-300 mt-2 bg-[#D0F4DE] hover:cursor-pointer disabled:blur-sm"
             type="submit"
             data-cy="signin"
             value="Sign In"
-            disabled={user.isLoggedIn}
+            disabled={isLoading || user.isLoggedIn}
           />
         </form>
         <button 
-          className="border border-black-300 mt-2 bg-[#FF99C8]"
+          className="border border-black-300 mt-2 bg-[#FF99C8] disabled:blur-sm"
           onClick={e => modalHandler(e)}
           data-cy="signup-button"
-          disabled={user.isLoggedIn}
+          disabled={isLoading || user.isLoggedIn}
           >Sign Up</button>
       </section>
     </>
