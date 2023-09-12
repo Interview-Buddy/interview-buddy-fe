@@ -30,11 +30,12 @@ const Login = () => {
       const authenticatedUser = await signInWithEmailAndPassword(auth, email, password)
       user.setUuid(authenticatedUser.user.uid);
       router.push('/dashboard');
+      setIsLoading(false)
     } catch (err: unknown){
       const errorMessage = err as FirebaseError
       console.log(errorMessage.message)
+      setIsLoading(false)
     }
-    setIsLoading(false)
   };
 
   const buttonValue = ():string => {
