@@ -26,7 +26,11 @@ describe('Dashboard Page', () => {
         )
       }
     }).as("gqluserQuery");
+    cy.intercept('POST', "https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyCPsDywdGHulSwvPzOhLnT1mG7ErfrcATM").as("login");
+    cy.intercept('POST', "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCPsDywdGHulSwvPzOhLnT1mG7ErfrcATM").as("loginlookup")
     cy.login();
+    cy.wait('@login');
+    cy.wait('@loginlookup');
   });
 
   afterEach(() => {
