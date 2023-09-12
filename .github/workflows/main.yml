@@ -9,6 +9,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Write the cypress.env.json file
+        run:
+          echo '${{ secrets.CYPRESS_ENV_CI }}' > cypress.env.json
+
       - name: Run E2E tests
         uses: cypress-io/github-action@v5
         with:
@@ -16,6 +20,8 @@ jobs:
           build: npm run build
           start: npm run start
           wait-on: "http://localhost:3000"
+        env:
+          NEXT_PUBLIC_SERVICE_ACCOUNT: ${{ secrets.NEXT_PUBLIC_SERVICE_ACCOUNT }}
 
       - name: Run Component Testing
         uses: cypress-io/github-action@v3
@@ -24,3 +30,5 @@ jobs:
           component: true
           browser: chrome
           wait-on: "http://localhost:3000"
+        env:
+          NEXT_PUBLIC_SERVICE_ACCOUNT: ${{ secrets.NEXT_PUBLIC_SERVICE_ACCOUNT }}
