@@ -9,11 +9,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Write the cypress.env.json file
-        run: |
-          touch cypress.env.json
-          echo '${{ secrets.CYPRESS_TEST_UID }}' > cypress.env.json
-
       - name: Run E2E tests
         uses: cypress-io/github-action@v5
         with:
@@ -23,6 +18,7 @@ jobs:
           wait-on: "http://localhost:3000"
         env:
           NEXT_PUBLIC_SERVICE_ACCOUNT: ${{ secrets.NEXT_PUBLIC_SERVICE_ACCOUNT }}
+          NEXT_PUBLIC_TEST_UID: ${{ secrets.NEXT_PUBLIC_TEST_UID }}
 
       - name: Run Component Testing
         uses: cypress-io/github-action@v3
@@ -33,3 +29,4 @@ jobs:
           wait-on: "http://localhost:3000"
         env:
           NEXT_PUBLIC_SERVICE_ACCOUNT: ${{ secrets.NEXT_PUBLIC_SERVICE_ACCOUNT }}
+          NEXT_PUBLIC_TEST_UID: ${{ secrets.NEXT_PUBLIC_TEST_UID }}

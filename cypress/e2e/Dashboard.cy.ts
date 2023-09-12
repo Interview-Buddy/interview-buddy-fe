@@ -35,7 +35,6 @@ describe('Dashboard Page', () => {
 
   it.only('When a user is logged in as a student: their name and timezone are displayed.', () => {
     cy.visit('/dashboard');
-    cy.wait(4000);
     cy.get('[data-cy="user-displayName"]').contains('Student User');
     cy.get('[data-cy="user-timezone').contains('PST 00:00');
   });
