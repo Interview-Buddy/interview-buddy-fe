@@ -70,6 +70,12 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
     }
   }
 
+  const buttonMessage = ():string => {
+    return isLoading || user.isLoggedIn ?
+    "Loading ..." :
+    "Submit"
+  }
+
   return (
     <section className="flex flex-col items-center absolute inset-0 top-20 h-[40rem] place-content-center">
       <form onSubmit={createAccount}
@@ -161,7 +167,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             hover:cursor-pointer disabled:cursor-not-allowed disabled:brightness-75
             disabled:animate-pulse"
           type="submit" 
-          value="Submit"
+          value={buttonMessage()}
           data-cy="submit"
           disabled={isLoading || user.isLoggedIn}
         />

@@ -37,6 +37,12 @@ const Login = () => {
     setIsLoading(false)
   };
 
+  const buttonMessage = ():string => {
+    return isLoading || user.isLoggedIn ?
+    "Loading ..." :
+    "Sign In"
+  }
+
   return (
     <>
       {modalShow && <SignUp modalHandler={modalHandler}/>}
@@ -75,7 +81,7 @@ const Login = () => {
               disabled:animate-pulse"
             type="submit"
             data-cy="signin"
-            value="Sign In"
+            value={buttonMessage()}
             disabled={isLoading || user.isLoggedIn}
           />
         </form>
