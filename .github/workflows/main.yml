@@ -11,6 +11,7 @@ jobs:
 
       - name: Write the cypress.env.json file
         run: |
+          touch cypress.env.json
           echo '${{ secrets.CYPRESS_TEST_UID }}' > cypress.env.json
 
       - name: Run E2E tests
