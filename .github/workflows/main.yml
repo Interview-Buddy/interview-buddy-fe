@@ -10,8 +10,8 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Write the cypress.env.json file
-        run:
-          echo '${{ secrets.CYPRESS_ENV_CI }}' > cypress.env.json
+        run: |
+          echo '${{ secrets.CYPRESS_TEST_UID }}' > cypress.env.json
 
       - name: Run E2E tests
         uses: cypress-io/github-action@v5
