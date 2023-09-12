@@ -37,7 +37,7 @@ const Login = () => {
     setIsLoading(false)
   };
 
-  const buttonMessage = ():string => {
+  const buttonValue = ():string => {
     return isLoading || user.isLoggedIn ?
     "Loading ..." :
     "Sign In"
@@ -81,7 +81,7 @@ const Login = () => {
               disabled:animate-pulse"
             type="submit"
             data-cy="signin"
-            value={buttonMessage()}
+            value={buttonValue()}
             disabled={isLoading || user.isLoggedIn}
           />
         </form>

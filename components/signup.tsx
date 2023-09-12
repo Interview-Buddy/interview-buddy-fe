@@ -70,7 +70,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
     }
   }
 
-  const buttonMessage = ():string => {
+  const buttonValue = ():string => {
     return isLoading || user.isLoggedIn ?
     "Loading ..." :
     "Submit"
@@ -167,7 +167,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             hover:cursor-pointer disabled:cursor-not-allowed disabled:brightness-75
             disabled:animate-pulse"
           type="submit" 
-          value={buttonMessage()}
+          value={buttonValue()}
           data-cy="submit"
           disabled={isLoading || user.isLoggedIn}
         />
