@@ -3,7 +3,7 @@ import React from "react";
 const Dashboard = () => {
 
     return (
-        <div>
+        <div data-cy="user-displayName">
             Dashboard
         </div>
     );
