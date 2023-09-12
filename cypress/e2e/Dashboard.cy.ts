@@ -33,14 +33,12 @@ describe('Dashboard Page', () => {
     cy.wait('@loginlookup');
   });
 
-  afterEach(() => {
-    cy.logout();
-  });
-
   it.only('When a user is logged in as a student: their name and timezone are displayed.', () => {
     cy.visit('/dashboard');
+    cy.wait("@gqluserQuery")
     cy.get('[data-cy="user-displayName"]').contains('Student User');
-    cy.get('[data-cy="user-timezone').contains('PST 00:00');
+    cy.get('[data-cy="user-timezone"]').contains('PST 00:00');
+    cy.logout();
   });
 
   it('When a user is logged in as a student: the user has the ability to select between behavioral or technical interviews to be displayed.', () => {
