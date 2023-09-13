@@ -35,6 +35,7 @@ describe('Dashboard Page', () => {
     cy.get('[data-cy="user-password"]').type("Testing")
     cy.get('[data-cy="signin"]').click()
     cy.wait("@gqluserQuery")
+    cy.url().should('eq', 'http://localhost:3000/dashboard');
     cy.get('[data-cy="user-displayName"]').contains('Student User');
     cy.get('[data-cy="user-timezone"]').contains('PST 00:00');
     // cy.logout();
