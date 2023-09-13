@@ -27,24 +27,18 @@ describe('Dashboard Page', () => {
       }
     }).as("gqluserQuery");
     cy.intercept('POST', "https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyCPsDywdGHulSwvPzOhLnT1mG7ErfrcATM").as("login");
-    cy.intercept('POST', "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCPsDywdGHulSwvPzOhLnT1mG7ErfrcATM").as("loginlookup")
-    
-    
+    cy.intercept('POST', "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCPsDywdGHulSwvPzOhLnT1mG7ErfrcATM").as("loginlookup");
+    cy.login();
   });
 
   afterEach(() => {
     cy.logout();
   });
 
-  it.only('When a user is logged in as a student: their name and timezone are displayed.', () => {
-    cy.login();
+  it.only('When a user is logged in as a student: their name and timezone are displayed.', () => {   
     cy.visit('/dashboard');
-    cy.wait('@login');
-    cy.wait('@loginlookup');
-    cy.wait('@gqluserQuery')
     cy.get('[data-cy="user-displayName"]').contains('Student User');
     cy.get('[data-cy="user-timezone"]').contains('PST 00:00');
-    cy.logout();
   });
 
   it('When a user is logged in as a student: the user has the ability to select between behavioral or technical interviews to be displayed.', () => {
