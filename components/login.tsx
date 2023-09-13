@@ -44,6 +44,12 @@ const Login = () => {
     "Sign In"
   }
 
+  const loadingPulseEffect = ():string => {
+    return isLoading ?
+    "disabled:animate-pulse" :
+    ""
+  }
+
   return (
     <>
       {modalShow && <SignUp modalHandler={modalHandler}/>}
@@ -77,9 +83,9 @@ const Login = () => {
               />
           </div>
           <input
-            className="border border-black-300 mt-2 bg-[#D0F4DE] hover:cursor-pointer
+            className={`border border-black-300 mt-2 bg-[#D0F4DE] hover:cursor-pointer
               hover:bg-[#bde1cb] disabled:cursor-not-allowed disabled:brightness-75
-              disabled:animate-pulse"
+              ${loadingPulseEffect()}`}
             type="submit"
             data-cy="signin"
             value={buttonValue()}
@@ -87,8 +93,8 @@ const Login = () => {
           />
         </form>
         <button 
-          className="border border-black-300 mt-2 bg-[#FF99C8] hover:bg-[#d16f9d]
-            disabled:cursor-not-allowed disabled:brightness-75 disabled:animate-pulse"
+          className={`border border-black-300 mt-2 bg-[#FF99C8] hover:bg-[#d16f9d]
+            disabled:cursor-not-allowed disabled:brightness-75 ${loadingPulseEffect()}`}
           onClick={e => modalHandler(e)}
           data-cy="signup-button"
           disabled={isLoading || user.isLoggedIn}

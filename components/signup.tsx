@@ -76,6 +76,12 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
     "Submit"
   }
 
+  const loadingPulseEffect = ():string => {
+    return isLoading ?
+    "disabled:animate-pulse" :
+    ""
+  }
+
   return (
     <section className="flex flex-col items-center absolute inset-0 top-20 h-[40rem] place-content-center">
       <form onSubmit={createAccount}
@@ -163,9 +169,9 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
           </select>
         </div>
         <input 
-          className="border border-black-300 mt-3 bg-[#D0F4DE] hover:bg-[#bde1cb]
+          className={`border border-black-300 mt-3 bg-[#D0F4DE] hover:bg-[#bde1cb]
             hover:cursor-pointer disabled:cursor-not-allowed disabled:brightness-75
-            disabled:animate-pulse"
+            ${loadingPulseEffect()}`}
           type="submit" 
           value={buttonValue()}
           data-cy="submit"
