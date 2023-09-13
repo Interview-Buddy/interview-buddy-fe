@@ -71,7 +71,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   }
 
   const buttonValue = ():string => {
-    return isLoading || user.isLoggedIn ?
+    return isLoading ?
     "Loading ..." :
     "Submit"
   }
