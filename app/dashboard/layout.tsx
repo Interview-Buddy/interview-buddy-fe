@@ -1,22 +1,25 @@
-'use client';
-import React, { useContext } from 'react';
-import { AuthContext } from '../auth-provider';
+// 'use client';
+import React from 'react';
+// import { AuthContext } from '../auth-provider';
 
 const Layout = (
     { 
-    alum,
-    student
+        children,
+    // alum,
+    // student
     }: {
-    alum: React.ReactNode
-    student: React.ReactNode
+        children: React.ReactNode
+    // alum: React.ReactNode
+    // student: React.ReactNode
     }) => {
     
-    const user = useContext(AuthContext);
+    // const user = useContext(AuthContext);
         
     return (
         <>
-            {(user.isLoggedIn && user.userType === "alum") && alum}
-            {(user.isLoggedIn && user.userType === "student") && student}
+            {children}
+            {/* {(user.isLoggedIn && user.userType === "alum") && alum}
+            {(user.isLoggedIn && user.userType === "student") && student} */}
         </>
     )
 }
