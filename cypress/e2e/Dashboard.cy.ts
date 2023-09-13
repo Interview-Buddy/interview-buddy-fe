@@ -28,11 +28,12 @@ describe('Dashboard Page', () => {
     }).as("gqluserQuery");
     cy.intercept('POST', "https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyCPsDywdGHulSwvPzOhLnT1mG7ErfrcATM").as("login");
     cy.intercept('POST', "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCPsDywdGHulSwvPzOhLnT1mG7ErfrcATM").as("loginlookup");
-    cy.login();
   });
 
   it.only('When a user is logged in as a student: their name and timezone are displayed.', () => {   
+    cy.login();
     cy.visit('/dashboard');
+    cy.wait("@gqluserQuery")
     cy.get('[data-cy="user-displayName"]').contains('Student User');
     cy.get('[data-cy="user-timezone"]').contains('PST 00:00');
     cy.logout();
