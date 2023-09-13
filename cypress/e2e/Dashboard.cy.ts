@@ -3,7 +3,7 @@ import { hasOperationName } from '../utils/graphql-test-utils';
 
 describe('Dashboard Page', () => {
   beforeEach(() => {
-    cy.intercept('POST', "https://interview-buddy-be.onrender.com/graphql*", (req) => {
+    cy.intercept('POST', "https://interview-buddy-be.onrender.com/graphql", (req) => {
       if (hasOperationName(req, 'user')) {
         req.reply(
           {
