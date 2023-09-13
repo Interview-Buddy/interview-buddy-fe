@@ -17,6 +17,7 @@ jobs:
           start: npm run start
           wait-on: "http://localhost:3000"
         env:
+          NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION: ${{ secrets.NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION }}
           NEXT_PUBLIC_SERVICE_ACCOUNT: ${{ secrets.NEXT_PUBLIC_SERVICE_ACCOUNT }}
           NEXT_PUBLIC_TEST_UID: ${{ secrets.NEXT_PUBLIC_TEST_UID }}
 
@@ -28,5 +29,6 @@ jobs:
           browser: chrome
           wait-on: "http://localhost:3000"
         env:
+          NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION: ${{ secrets.NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION }}
           NEXT_PUBLIC_SERVICE_ACCOUNT: ${{ secrets.NEXT_PUBLIC_SERVICE_ACCOUNT }}
           NEXT_PUBLIC_TEST_UID: ${{ secrets.NEXT_PUBLIC_TEST_UID }}
