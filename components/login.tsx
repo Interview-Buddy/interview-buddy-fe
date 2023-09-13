@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   const buttonValue = ():string => {
-    return isLoading || user.isLoggedIn ?
+    return isLoading ?
     "Loading ..." :
     "Sign In"
   }
