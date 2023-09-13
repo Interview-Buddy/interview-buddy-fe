@@ -14,11 +14,9 @@ describe('Home page', () => {
 
   it.skip('Should be able to Sign In', () => {
     // Need to stub/mock and intercept GraphQL query
-    // "Sign In" button value changes to "Loading ..." as part of this action (subject to change)
   })
 
   it.skip('Should be able to Sign Up', () => {
     // Need to stub/mock and intercept GraphQL mutation
-    // "Submit" button value changes to "Loading ..." as part of this action (subject to change)
   })
 });
