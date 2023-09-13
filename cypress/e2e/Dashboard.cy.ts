@@ -26,17 +26,18 @@ describe('Dashboard Page', () => {
         )
       }
     }).as("gqluserQuery");
-    cy.intercept('POST', "https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyCPsDywdGHulSwvPzOhLnT1mG7ErfrcATM").as("login");
-    cy.intercept('POST', "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCPsDywdGHulSwvPzOhLnT1mG7ErfrcATM").as("loginlookup");
   });
 
   it.only('When a user is logged in as a student: their name and timezone are displayed.', () => {   
-    cy.login();
-    cy.visit('/dashboard');
+    // cy.login();
+    cy.visit('/');
+    cy.get('[data-cy="user-email"]').type("alum@test.com")
+    cy.get('[data-cy="user-password"]').type("Testing")
+    cy.get('[data-cy="signin"]').click()
     cy.wait("@gqluserQuery")
     cy.get('[data-cy="user-displayName"]').contains('Student User');
     cy.get('[data-cy="user-timezone"]').contains('PST 00:00');
-    cy.logout();
+    // cy.logout();
   });
 
   it('When a user is logged in as a student: the user has the ability to select between behavioral or technical interviews to be displayed.', () => {
