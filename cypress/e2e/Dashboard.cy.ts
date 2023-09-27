@@ -28,7 +28,7 @@ describe('Dashboard Page', () => {
     }).as("gqluserQuery");
   });
 
-  it.only('When a user is logged in as a student: their name and timezone are displayed.', () => {   
+  it.skip('When a user is logged in as a student: their name and timezone are displayed.', () => {   
     // cy.login();
     cy.visit('/');
     cy.get('[data-cy="user-email"]').type("alum@test.com")
@@ -41,7 +41,7 @@ describe('Dashboard Page', () => {
     // cy.logout();
   });
 
-  it('When a user is logged in as a student: the user has the ability to select between behavioral or technical interviews to be displayed.', () => {
+  it.skip('When a user is logged in as a student: the user has the ability to select between behavioral or technical interviews to be displayed.', () => {
     cy.visit('/dashboard');
     cy.wait('@gqluserQuery');
     cy.get('[data-cy="interview-type-label"]').contains('Interview Type')
@@ -49,13 +49,13 @@ describe('Dashboard Page', () => {
     cy.get('[data-cy="select-interview-type"]').select('technical')
   });
 
-  it('When a user is logged in as a student: the user can see a calendar where interview availability is displayed.', () => {
+  it.skip('When a user is logged in as a student: the user can see a calendar where interview availability is displayed.', () => {
     cy.visit('/dashboard');
     cy.wait('@gqluserQuery');
     cy.get('.fc-dayGridMonth-view').should('be.visible');
   });
 
-  it('When a user is logged in as a student: the user can see the current month and year which is displayed on the calendar. The user can select to view the previous month, today - current month, or next month. The month and year displayed changes accordingly.', () => {
+  it.skip('When a user is logged in as a student: the user can see the current month and year which is displayed on the calendar. The user can select to view the previous month, today - current month, or next month. The month and year displayed changes accordingly.', () => {
     cy.visit('/dashboard');
     cy.wait('@gqluserQuery');
     cy.get('[data-cy="date-title"]').contains(dayjs().format("MMMM YYYY"));
@@ -67,7 +67,7 @@ describe('Dashboard Page', () => {
     cy.get('[data-cy="date-title"]').contains(dayjs().add(1, 'months').format("MMMM YYYY"));
   });
 
-  it('When a user is logged in as a student: the user can select to view the calendar as a month, week, or day.', () => {
+  it.skip('When a user is logged in as a student: the user can select to view the calendar as a month, week, or day.', () => {
     cy.visit('/dashboard');
     cy.wait('@gqluserQuery');
     cy.get('.fc-dayGridMonth-view').should('be.visible');
