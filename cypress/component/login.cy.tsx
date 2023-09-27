@@ -22,4 +22,10 @@ describe('login component', () => {
   it.skip('Disables the submit button until the user enters a valid email address.', () => {
     // cy.mount()
   })
+
+  it.skip('Should be able to log in', () => {
+    // Mock/stub and intercept needed, or is mirroring AuthProvider setup in header.cy.tsx sufficient?
+    // "Sign In" button value changes to "Loading ..." as part of this action (subject to change)
+    // Buttons should be disabled
+  })
 })

@@ -58,4 +58,10 @@ describe('signup component', () => {
     cy.get('[data-cy="confirm-password"]').type("D0e$N0tM4tc#")
     cy.get('[data-cy="password-match-message"]').should('have.text', 'Password does not match')
   })
+
+  it.skip('Should be able to sign up', () => {
+    // Mock/stub and intercept needed, or is mirroring AuthProvider setup in header.cy.tsx sufficient?
+    // "Submit" button value changes to "Loading ..." as part of this action (subject to change)
+    // Button should be disabled
+  })
 })

@@ -12,6 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [modalShow, setModalShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter();
   const user = useContext(AuthContext);
 
@@ -24,15 +25,30 @@ const Login = () => {
   // then we can set the user's id which will trigger the onAuthStateChanged hook from Firebase
   const submitLogin = async (event: { preventDefault: () => any; }) => {
     event.preventDefault();
+    setIsLoading(true)
     try {
       const authenticatedUser = await signInWithEmailAndPassword(auth, email, password)
       user.setUuid(authenticatedUser.user.uid);
       router.push('/dashboard');
+      setIsLoading(false)
     } catch (err: unknown){
       const errorMessage = err as FirebaseError
       console.log(errorMessage.message)
+      setIsLoading(false)
     }
   };
+
+  const buttonValue = ():string => {
+    return isLoading ?
+    "Loading ..." :
+    "Sign In"
+  }
+
+  const loadingPulseEffect = ():string => {
+    return isLoading ?
+    "disabled:animate-pulse" :
+    ""
+  }
 
   return (
     <>
@@ -67,17 +83,23 @@ const Login = () => {
               />
           </div>
           <input
-            className="border border-black-300 mt-2 bg-[#D0F4DE]"
+            className={`border border-black-300 mt-2 bg-[#D0F4DE] hover:cursor-pointer
+              hover:bg-[#bde1cb] disabled:cursor-not-allowed disabled:brightness-75
+              ${loadingPulseEffect()}`}
             type="submit"
             data-cy="signin"
-            value="Sign In"
-            />
+            value={buttonValue()}
+            disabled={isLoading || user.isLoggedIn}
+          />
         </form>
         <button 
-          className="border border-black-300 mt-2 bg-[#FF99C8]"
+          className={`border border-black-300 mt-2 bg-[#FF99C8] hover:bg-[#d16f9d]
+            disabled:cursor-not-allowed disabled:brightness-75 ${loadingPulseEffect()}`}
           onClick={e => modalHandler(e)}
           data-cy="signup-button"
-          >Sign Up</button>
+          disabled={isLoading || user.isLoggedIn}
+          >Sign Up
+        </button>
       </section>
     </>
   )

@@ -18,6 +18,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [userType, setUserType] = useState(3);
+  const [isLoading, setIsLoading] = useState(false)
   const user = useContext(AuthContext);
   const router = useRouter()
   const createUser = useCreateUser()
@@ -40,6 +41,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
 
   const createAccount = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
+    setIsLoading(true)
     try {
       const createdUser = await createUserWithEmailAndPassword(auth, email, password)
       createUser.mutate({
@@ -57,11 +59,27 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
         onSuccess: () => {
           user.setUuid(createdUser.user.uid)
           router.push('/dashboard');
+        },
+        onSettled: () => {
+          setIsLoading(false)
         }
       })
     } catch (err: unknown) {
       console.log(err)
+      setIsLoading(false)
     }
+  }
+
+  const buttonValue = ():string => {
+    return isLoading ?
+    "Loading ..." :
+    "Submit"
+  }
+
+  const loadingPulseEffect = ():string => {
+    return isLoading ?
+    "disabled:animate-pulse" :
+    ""
   }
 
   return (
@@ -151,10 +169,13 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
           </select>
         </div>
         <input 
+          className={`border border-black-300 mt-3 bg-[#D0F4DE] hover:bg-[#bde1cb]
+            hover:cursor-pointer disabled:cursor-not-allowed disabled:brightness-75
+            ${loadingPulseEffect()}`}
           type="submit" 
-          value="Submit"
+          value={buttonValue()}
           data-cy="submit"
-          className="border border-black-300 mt-3 bg-[#D0F4DE]"
+          disabled={isLoading || user.isLoggedIn}
         />
       </form>
     </section>
