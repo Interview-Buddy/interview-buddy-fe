@@ -31,6 +31,7 @@ const Dashboard = () => {
                         onChange={e => setInterviewType(e.target.value)}
                     >
                         <option value="select">Select Type</option>
+                        {/* interviewType here from here*/}
                         <option value="behavioral">Behavioral</option>
                         <option value="technical">Technical</option>
                     </select>

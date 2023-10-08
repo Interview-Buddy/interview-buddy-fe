@@ -95,6 +95,7 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
 
     useEffect(() => {
         if (data && data.user !== null && data.user.uuid === uuid) {
+            console.log(data);
             const { user } = data;
             setCompany(user.company)
             setDisplayName(user.displayName)
