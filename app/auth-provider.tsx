@@ -91,7 +91,7 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
         return () => {
             listen();
         };
-    }, []);
+    }, [auth]);
 
     useEffect(() => {
         if (data && data.user !== null && data.user.uuid === uuid) {

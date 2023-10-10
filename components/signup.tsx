@@ -23,7 +23,11 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const router = useRouter()
   const createUser = useCreateUser()
 
+  // add length check here to prevent faulty signups / no error message when failing to creat a new user as a result of password length < 6 chars
   const passwordChecker = (): JSX.Element | null => {
+    let strongEnough;
+    password.length > 6 ? strongEnough = true : strongEnough = false;
+    console.log(strongEnough);
     if (password && confirmPassword) {
       return password === confirmPassword ?
       <h2 className="text-[#D0F4DE]">Password matches!</h2> :
@@ -157,6 +161,9 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
         <div data-cy="password-match-message">
           {passwordChecker()}
         </div>
+        {/* <div data-cy="password-strength-message">
+          {passwordChecker()}
+        </div> */}
         <div className="flex flex-col items-center">
           <label htmlFor="user-type" data-cy="user-type-label" className="mt-2">User Type</label>
           <select id="user-type" data-cy="select-user-type" className="w-44"
