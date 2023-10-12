@@ -68,6 +68,7 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
     // Will need the onAuthStateChanged hook from Firebase which will set the user's email,
     // which will then enable the useUser query to fetch the user's data from the BE
     // Once that data is retrieved, will set the rest of the user's properties in the useEffect below
+    // How do we use 'nextOrObserver' callback on the auth instance change occuring?
     useEffect(() => {
         const listen = onAuthStateChanged(auth, async (user) => {
             if (user) {

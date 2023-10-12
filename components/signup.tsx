@@ -23,16 +23,23 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const router = useRouter()
   const createUser = useCreateUser()
 
-  // add length check here to prevent faulty signups / no error message when failing to creat a new user as a result of password length < 6 chars
+  // add length check here to warn user of faulty signups / no error message when failing to create a new user as a result of password length < 6 chars
+  // added 10 / 10
   const passwordChecker = (): JSX.Element | null => {
-    let strongEnough;
-    password.length > 6 ? strongEnough = true : strongEnough = false;
-    console.log(strongEnough);
     if (password && confirmPassword) {
-      return password === confirmPassword ?
-      <h2 className="text-[#D0F4DE]">Password matches!</h2> :
-      <h2 className="text-[#FFE47F]">Password does not match</h2>
-    } else {
+      let strongEnough = false;
+      password.length > 6 ? strongEnough = true : strongEnough = false;
+      if (!strongEnough) {
+        return <h2 className='text-[#FFE47F]'>Please choose a password of 6 chars of length or more...</h2>
+      }
+      else {
+        return password === confirmPassword ?
+        <h2 className="text-[#D0F4DE]">Password matches!</h2> :
+        <h2 className="text-[#FFE47F]">Password does not match</h2>
+      }
+      
+    }
+    else {
        return null
     }
   }
