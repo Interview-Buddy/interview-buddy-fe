@@ -14,6 +14,7 @@ interface SignUpProps {
 const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [pronouns, setPronouns] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -113,6 +114,19 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             autoComplete="family-name"
             required={true}
             onChange={e => setLastName(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col items-center">
+          <label htmlFor="pronouns" data-cy="pronouns-label">Pronouns</label>
+          <input
+            id="firstName"
+            className="border border-black-300"
+            type="text"
+            value={pronouns}
+            data-cy="pronouns"
+            autoComplete="pronouns"
+            required={true}
+            onChange={e => setPronouns(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-center">
