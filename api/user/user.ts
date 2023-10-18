@@ -1,7 +1,6 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { request, gql } from "graphql-request";
 
-// this variable is being POSTed and found as undefined
 const endpoint:string = (process.env.NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION as string);
 /// separate into different file for each query for easier understanding
 const userDocument = gql`
@@ -19,7 +18,7 @@ query user($uuid: String!)
         }
     }
 `;
-// source of POST error on landing page, I think: 'at async Object.enabled [as queryFn] (webpack-internal:///(:3000/app-client)/./api/user/user.ts:40:22)' after a few failed attempts.
+
 export const useUser = (uuid: string |null| undefined, email: string | null) => {
     return useQuery(['user', email], async () => {
         const data : any = await request({
