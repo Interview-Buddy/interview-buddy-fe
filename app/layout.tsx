@@ -29,6 +29,8 @@ export default function RootLayout({
               <Header />
               <main className="max-w-screen-xl mx-auto">
                 {children}
+                {alumdash}
+                {studentdash}
               </main>
             </AuthProvider>
           </QueryProvider>

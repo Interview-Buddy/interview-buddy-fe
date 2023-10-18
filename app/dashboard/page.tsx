@@ -1,10 +1,13 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import CalendarHeaderToolbar from "@components/CalendarHeaderToolbar";
+import { AuthContext } from "../auth-provider";
+import StudentDashboard from "./@studentdash/page";
+import AlumDashboard from "./@alumdash/page";
 
 const mockStudent = {
     firstName: "Mock",
@@ -15,6 +18,9 @@ const mockStudent = {
 }
 
 const Dashboard = () => {
+    const user = useContext(AuthContext)
+    console.log(user);
+    const [userType, setUserType]= useState('');
     const [interviewType, setInterviewType] = useState('');
     const [isLoading, setIsLoading] = useState<boolean>(true);
     //Caused error when not set to any
