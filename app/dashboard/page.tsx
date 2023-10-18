@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -8,28 +8,28 @@ import CalendarHeaderToolbar from "@components/CalendarHeaderToolbar";
 import { AuthContext } from "../auth-provider";
 import StudentDashboard from "./@studentdash/page";
 import AlumDashboard from "./@alumdash/page";
-
-const mockStudent = {
-    firstName: "Mock",
-    lastName: "Student",
-    id: "1",
-    email: "mockStudent@test.com",
-    userType: "student"
-}
+import { getAuth } from "firebase/auth";
+import { app } from '../../configs/firebase.configs'
 
 const Dashboard = () => {
     const user = useContext(AuthContext)
-    console.log(user);
+    console.log('userType:', user.userType);
+    const auth = getAuth(app)
+    console.log('uuid from auth instance:', auth.lastNotifiedUid)
     const [userType, setUserType]= useState('');
     const [interviewType, setInterviewType] = useState('');
     const [isLoading, setIsLoading] = useState<boolean>(true);
     //Caused error when not set to any
     const calendarRef = useRef<any>();
 
+    useEffect(()=> {
+        
+    }, []) 
+
     return (
         <div className="flex flex-col md:flex-row">
             <section className="flex flex-col p-4">
-                <h2 className="text-2xl" data-cy="user-displayName">{`${mockStudent.firstName} ${mockStudent.lastName}`}</h2>
+                <h2 className="text-2xl" data-cy="user-displayName">{`${user.firstName} ${user.lastName}`}</h2>
                 <p data-cy="user-timezone">PST 00:00</p>
                 <div className="flex flex-row md:flex-col">
                     <label htmlFor="interview-type" data-cy="interview-type-label">Interview Type:</label>
@@ -62,6 +62,9 @@ const Dashboard = () => {
                         viewDidMount={() => setIsLoading(false)}
                     />
                 </div>
+                {user.userType === 'student' ? 
+                <StudentDashboard/> :
+                <AlumDashboard/>}
             </section>
         </div>
     );

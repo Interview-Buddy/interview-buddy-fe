@@ -3,7 +3,6 @@ import { request, gql } from "graphql-request";
 
 // this variable is being POSTed and found as undefined
 const endpoint:string = (process.env.NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION as string);
-console.log(endpoint)
 /// separate into different file for each query for easier understanding
 const userDocument = gql`
 query user($uuid: String!)
