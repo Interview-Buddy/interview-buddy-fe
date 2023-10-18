@@ -4,11 +4,10 @@ import { AuthContext } from "../../auth-provider";
 
 const AlumDashboard = () => {
     const user = useContext(AuthContext)
-    console.log('alumni dashboard loaded')
     const [interviewType, setInterviewType] = useState('');
     const [isLoading, setIsLoading] = useState<boolean>(true);
     //Caused error when not set to any
-return (
+    return (
     <div>
         <h1>Alum Test Dash</h1>
     </div>

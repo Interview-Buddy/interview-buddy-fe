@@ -10,22 +10,20 @@ import StudentDashboard from "./@studentdash/page";
 import AlumDashboard from "./@alumdash/page";
 import { getAuth } from "firebase/auth";
 import { app } from '../../configs/firebase.configs'
+import NotFound from "../not-found";
 
 const Dashboard = () => {
     const user = useContext(AuthContext)
-    console.log('userType:', user.userType);
-    const auth = getAuth(app)
-    console.log('uuid from auth instance:', auth.lastNotifiedUid)
     const [userType, setUserType]= useState('');
     const [interviewType, setInterviewType] = useState('');
     const [isLoading, setIsLoading] = useState<boolean>(true);
     //Caused error when not set to any
     const calendarRef = useRef<any>();
 
-    useEffect(()=> {
-        
-    }, []) 
-
+    if (!user.isLoggedIn) {
+        return <NotFound />
+    }
+    
     return (
         <div className="flex flex-col md:flex-row">
             <section className="flex flex-col p-4">
