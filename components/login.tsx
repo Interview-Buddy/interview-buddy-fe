@@ -49,11 +49,12 @@ const Login = () => {
     "disabled:animate-pulse" :
     ""
   }
+  
+  user.isLoggedIn ? 
+  router.push('/dashboard') :
+  null
 
   return (
-    user.isLoggedIn ? 
-    router.push('/dashboard') 
-    :
     <>
       {modalShow && <SignUp modalHandler={modalHandler}/>}
 
