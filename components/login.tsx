@@ -51,6 +51,9 @@ const Login = () => {
   }
 
   return (
+    user.isLoggedIn ? 
+    router.push('/dashboard') 
+    :
     <>
       {modalShow && <SignUp modalHandler={modalHandler}/>}
 
