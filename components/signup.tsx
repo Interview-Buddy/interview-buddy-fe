@@ -14,6 +14,7 @@ interface SignUpProps {
 const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  // merge conflict fix here, pronouns hook
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -23,8 +24,6 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const router = useRouter()
   const createUser = useCreateUser()
 
-  // add length check here to warn user of faulty signups / no error message when failing to create a new user as a result of password length < 6 chars
-  // added 10 / 10
   const passwordChecker = (): JSX.Element | null => {
     if (password && confirmPassword) {
       let strongEnough = false;
@@ -126,6 +125,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             onChange={e => setLastName(e.target.value)}
           />
         </div>
+        {/* Pronouns input conflict can go here!*/}
         <div className="flex flex-col items-center">
           <label htmlFor="email" data-cy="email-label" className="mt-2">Email</label>
           <input 
