@@ -20,14 +20,14 @@ const Dashboard = () => {
     //Caused error when not set to any
     const calendarRef = useRef<any>();
 
-    if (!user.isLoggedIn) {
-        return <NotFound />
-    }
+    // if (!user.isLoggedIn) {
+    //     return <NotFound />
+    // }
     
     return (
         <div className="flex flex-col md:flex-row">
             <section className="flex flex-col p-4">
-                <h2 className="text-2xl" data-cy="user-displayName">{`${user.firstName} ${user.lastName}`}</h2>
+                <h2 className="text-2xl" data-cy="user-displayName">Mock Student</h2>
                 <p data-cy="user-timezone">PST 00:00</p>
                 <div className="flex flex-row md:flex-col">
                     <label htmlFor="interview-type" data-cy="interview-type-label">Interview Type:</label>

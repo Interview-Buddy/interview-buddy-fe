@@ -9,7 +9,7 @@ interface AuthProviderProps {
 }
 
 const AuthProvider: FC<AuthProviderProps> = (props) => {
-  const [uuid, setUuid] = useState<string | undefined>("");
+  const [uuid, setUuid] = useState<string | null | undefined>("");
 
   return (
       <AuthContext.Provider value={{
