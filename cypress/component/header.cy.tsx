@@ -51,8 +51,8 @@ describe('Header component', () => {
     cy.get('[data-cy="log-out-button"]').should("be.visible");
   });
 
-  it.skip('Should be able click Logout Button to log out', () => {
-    // Utilize AuthProvider mock from above to test?
-    // Basically the reverse of line 49?
+  it('Should be able click Logout Button to log out', () => {
+    cy.mount(<MockNextRouter><AuthProvider isLoggedIn={true}><Header /></AuthProvider></MockNextRouter>)
+    cy.get('[data-cy="log-out-button"]')
   })
 });
