@@ -14,7 +14,7 @@ interface SignUpProps {
 const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  // merge conflict fix here, pronouns hook
+  const [pronouns, setPronouns] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -125,7 +125,6 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             onChange={e => setLastName(e.target.value)}
           />
         </div>
-        {/* Pronouns input conflict can go here!*/}
         <div className="flex flex-col items-center">
           <label htmlFor="email" data-cy="email-label" className="mt-2">Email</label>
           <input 
