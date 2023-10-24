@@ -49,6 +49,10 @@ const Login = () => {
     "disabled:animate-pulse" :
     ""
   }
+  
+  user.isLoggedIn ? 
+  router.push('/dashboard') :
+  null
 
   return (
     <>

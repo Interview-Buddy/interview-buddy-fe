@@ -2,7 +2,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { request, gql } from "graphql-request";
 
 const endpoint:string = (process.env.NEXT_PUBLIC_GQL_ENDPOINT_PRODUCTION as string);
-
+/// separate into different file for each query for easier understanding
 const userDocument = gql`
 query user($uuid: String!)
     {
@@ -19,7 +19,7 @@ query user($uuid: String!)
     }
 `;
 
-export const useUser = (uuid: string | undefined, email: string | null) => {
+export const useUser = (uuid: string |null| undefined, email: string | null) => {
     return useQuery(['user', email], async () => {
         const data : any = await request({
             url: endpoint,
@@ -90,6 +90,7 @@ const createUser = async (createUserInput: CreateUserInput) => {
         document: createUserMutation,
         variables: { input: variables }
      })
+     console.log(data);
      return data
 }
 

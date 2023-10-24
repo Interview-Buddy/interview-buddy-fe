@@ -27,11 +27,11 @@ export interface User {
     email: string | null | undefined;
     firstName: string | null | undefined;
     isLoggedIn: boolean;
-    uuid: string | undefined | undefined;
+    uuid: string | null | undefined;
     lastName: string | null | undefined;
     pronouns: string | null | undefined;
     userType: string | null | undefined;
-    setUuid: Dispatch<SetStateAction<string | undefined>>;
+    setUuid: Dispatch<SetStateAction<string | null | undefined>>;
 };
  
 export const AuthContext = createContext<User>({
@@ -61,13 +61,14 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [lastName, setLastName] = useState<string | null | undefined>('');
     const [pronouns, setPronouns] = useState<string | null | undefined>('');
-    const [uuid, setUuid] = useState<string | undefined>("");
-    const [userType, setUserType] = useState<string | null | undefined>(undefined);
+    const [uuid, setUuid] = useState<string |null | undefined>("");
+    const [userType, setUserType] = useState<string |null | undefined>(undefined);
     const { data } = useUser(uuid, email);
 
     // Will need the onAuthStateChanged hook from Firebase which will set the user's email,
     // which will then enable the useUser query to fetch the user's data from the BE
     // Once that data is retrieved, will set the rest of the user's properties in the useEffect below
+    // How do we use 'nextOrObserver' callback on the auth instance change occuring?
     useEffect(() => {
         const listen = onAuthStateChanged(auth, async (user) => {
             if (user) {
@@ -91,11 +92,12 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
         return () => {
             listen();
         };
-    }, []);
+    }, [auth]);
 
     useEffect(() => {
         if (data && data.user !== null && data.user.uuid === uuid) {
             const { user } = data;
+            console.log('ln 99 Auth useEffect:', data);
             setCompany(user.company)
             setDisplayName(user.displayName)
             setEmail(user.email)
@@ -104,6 +106,7 @@ const AuthProvider: FC<AuthProviderProps> = (props) => {
             setLastName(user.lastName)
             setPronouns(user.pronouns)
             setUserType(user.userType)
+            setUuid(user.uuid)
         }
     }, [data, uuid]);
 
