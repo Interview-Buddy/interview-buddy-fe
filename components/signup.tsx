@@ -14,6 +14,7 @@ interface SignUpProps {
 const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [pronouns, setPronouns] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -25,10 +26,19 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
 
   const passwordChecker = (): JSX.Element | null => {
     if (password && confirmPassword) {
-      return password === confirmPassword ?
-      <h2 className="text-[#D0F4DE]">Password matches!</h2> :
-      <h2 className="text-[#FFE47F]">Password does not match</h2>
-    } else {
+      let strongEnough = false;
+      password.length > 6 ? strongEnough = true : strongEnough = false;
+      if (!strongEnough) {
+        return <h2 className='text-[#FFE47F]'>Please choose a password of 6 chars of length or more...</h2>
+      }
+      else {
+        return password === confirmPassword ?
+        <h2 className="text-[#D0F4DE]">Password matches!</h2> :
+        <h2 className="text-[#FFE47F]">Password does not match</h2>
+      }
+      
+    }
+    else {
        return null
     }
   }
@@ -113,6 +123,19 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             autoComplete="family-name"
             required={true}
             onChange={e => setLastName(e.target.value)}
+          />
+        </div>
+        <div className="flex flex-col items-center">
+          <label htmlFor="pronouns" data-cy="pronouns-label">Pronouns</label>
+          <input
+            id="firstName"
+            className="border border-black-300"
+            type="text"
+            value={pronouns}
+            data-cy="pronouns"
+            autoComplete="pronouns"
+            required={true}
+            onChange={e => setPronouns(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-center">
