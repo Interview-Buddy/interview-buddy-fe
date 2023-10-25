@@ -23,7 +23,7 @@ export default function RootLayout({
   }) {
     return (
       <html lang="en" data-theme="business">
-        <body className="bg-neutral">
+        <body className="bg-neutral w-screen h-screen">
           <QueryProvider>
             <AuthProvider>
               <Header />

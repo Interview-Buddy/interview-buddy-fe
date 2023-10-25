@@ -97,12 +97,12 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
       <form onSubmit={createAccount}
         className="join join-vertical p-8 bg-secondary">
         <div className="flex justify-end w-56">
-          <button data-cy="exit-button" onClick={(e) => modalHandler(e)}>X</button>
+          <button className="text-accent-content text-lg" data-cy="exit-button" onClick={(e) => modalHandler(e)}>X</button>
         </div>
-          <label className="label" htmlFor="firstName" data-cy="first-name-label">First Name</label>
+          <label className="label text-secondary-content" htmlFor="firstName" data-cy="first-name-label">First Name</label>
           <input
             id="firstName"
-            className="input input-primary input-sm"
+            className="input input-primary bg-secondary-focus input-sm"
             type="text"
             value={firstName}
             data-cy="first-name"
@@ -110,10 +110,10 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setFirstName(e.target.value)}
           />
-          <label className="label" htmlFor="lastName" data-cy="last-name-label">Last Name</label>
+          <label className="label text-secondary-content" htmlFor="lastName" data-cy="last-name-label">Last Name</label>
           <input
             id="lastName"
-            className="input input-primary input-sm"
+            className="input input-primary input-sm bg-secondary-focus"
             type="text"
             value={lastName}
             data-cy="last-name"
@@ -121,10 +121,10 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setLastName(e.target.value)}
           />
-          <label className="label" htmlFor="pronouns" data-cy="pronouns-label">Pronouns</label>
+          <label className="label text-secondary-content" htmlFor="pronouns" data-cy="pronouns-label">Pronouns</label>
           <input
             id="firstName"
-            className="input input-primary input-sm"
+            className="input input-primary input-sm bg-secondary-focus"
             type="text"
             value={pronouns}
             data-cy="pronouns"
@@ -132,10 +132,10 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setPronouns(e.target.value)}
           />
-          <label className="label" htmlFor="email" data-cy="email-label">Email</label>
+          <label className="label text-secondary-content" htmlFor="email" data-cy="email-label">Email</label>
           <input 
             id="email"
-            className="input input-primary input-sm"
+            className="input input-primary input-sm bg-secondary-focus"
             type="email"
             value={email}
             data-cy="email"
@@ -143,10 +143,10 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setEmail(e.target.value)}
           />
-          <label className="label" htmlFor="password" data-cy="password-label">Password</label>
+          <label className="label text-secondary-content" htmlFor="password" data-cy="password-label">Password</label>
           <input 
             id="password"
-            className="input input-primary input-sm"
+            className="input input-primary input-sm bg-secondary-focus"
             type="password"
             value={password}
             data-cy="password"
@@ -154,10 +154,10 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setPassword(e.target.value)}
           />
-          <label className="label" htmlFor="confirmPassword" data-cy="confirm-password-label">Confirm Password</label>
+          <label className="label text-secondary-content" htmlFor="confirmPassword" data-cy="confirm-password-label">Confirm Password</label>
           <input 
             id="confirmPassword"
-            className="input input-primary input-sm"
+            className="input input-primary input-sm bg-secondary-focus"
             type="password"
             value={confirmPassword}
             data-cy="confirm-password"
@@ -168,8 +168,8 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
         <div data-cy="password-match-message">
           {passwordChecker()}
         </div>
-          <label className="label" htmlFor="user-type" data-cy="user-type-label">User Type</label>
-          <select id="user-type" data-cy="select-user-type" className="select select-sm"
+          <label className="label text-secondary-content" htmlFor="user-type" data-cy="user-type-label">User Type</label>
+          <select id="user-type" data-cy="select-user-type" className="select select-sm bg-secondary-focus text-secondary-content"
             onChange={e => setUserType(Number(e.target.value))}
             required={true}
           >
