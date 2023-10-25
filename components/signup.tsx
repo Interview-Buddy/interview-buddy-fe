@@ -95,7 +95,7 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
   return (
     <section className="flex flex-col items-center absolute inset-0 top-20 h-[40rem] place-content-center">
       <form onSubmit={createAccount}
-        className="join join-vertical p-8 bg-secondary">
+        className="join join-vertical p-12 bg-secondary">
         <div className="flex justify-end w-56">
           <button className="text-accent-content text-lg" data-cy="exit-button" onClick={(e) => modalHandler(e)}>X</button>
         </div>
