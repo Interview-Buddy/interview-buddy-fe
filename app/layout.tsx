@@ -22,7 +22,7 @@ export default function RootLayout({
     studentdash: React.ReactNode
   }) {
     return (
-      <html lang="en" data-theme="emerald">
+      <html lang="en" data-theme="business">
         <body className="bg-neutral">
           <QueryProvider>
             <AuthProvider>

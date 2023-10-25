@@ -64,7 +64,7 @@ const Login = () => {
             <label className="label" htmlFor="userEmail" data-cy="email-label">Email</label>
             <input
               id="userEmail"
-              className="join-item input input-bordered input-primary"
+              className="join-item input input-bordered input-secondary"
               type="text"
               value={email}
               data-cy="user-email"
@@ -73,11 +73,11 @@ const Login = () => {
               onChange={e => setEmail(e.target.value)}
               />
           </div>
-          <div className="flex flex-col items-center">
-            <label htmlFor="userPassword" data-cy="password-label" className="mt-2">Password</label>
+          <div className="join-item">
+            <label htmlFor="userPassword" data-cy="password-label" className="label">Password</label>
             <input 
               id="userPassword"
-              className="border border-black-300"
+              className="join-item input input-bordered input-secondary"
               type="password"
               value={password}
               data-cy="user-password"
