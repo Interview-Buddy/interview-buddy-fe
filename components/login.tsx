@@ -57,7 +57,13 @@ const Login = () => {
   return (
     <>
       {modalShow && <SignUp modalHandler={modalHandler}/>}
-
+      <button
+        className="btn btn-secondary"
+        onClick={e => modalHandler(e)}
+        data-cy="signup-button"
+        disabled={isLoading || user.isLoggedIn}>
+          Sign Up
+      </button>
       <section className="flex flex-col items-center h-[40rem] place-content-center">
         <form className="join-vertical" onSubmit={submitLogin}>
           <div>
@@ -86,26 +92,21 @@ const Login = () => {
               onChange={e => setPassword(e.target.value)}
               />
           </div>
-          <input
-            className="btn btn-primary"
-            // className={`border border-black-300 mt-2 bg-[#D0F4DE] hover:cursor-pointer
-            //   hover:bg-[#bde1cb] disabled:cursor-not-allowed disabled:brightness-75
-            //   ${loadingPulseEffect()}`}
+          <button
+            className="join-item btn btn-primary"
             type="submit"
             data-cy="signin"
             value={buttonValue()}
             disabled={isLoading || user.isLoggedIn}
-          />
-        </form>
-        <button 
+            >Sign In</button>
+          {/* <button 
           className="btn btn-secondary"
-          // className={`border border-black-300 mt-2 bg-[#FF99C8] hover:bg-[#d16f9d]
-          //   disabled:cursor-not-allowed disabled:brightness-75 ${loadingPulseEffect()}`}
           onClick={e => modalHandler(e)}
           data-cy="signup-button"
           disabled={isLoading || user.isLoggedIn}
           >Sign Up
-        </button>
+         </button> */}
+        </form>
       </section>
     </>
   )
