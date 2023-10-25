@@ -177,14 +177,15 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             <option value="0">Student</option>
             <option value="1">Alum</option>
           </select>
-        <input 
+        <button
           className={`btn btn-primary btn-sm
             ${loadingPulseEffect()}`}
           type="submit" 
           value={buttonValue()}
           data-cy="submit"
-          disabled={isLoading || user.isLoggedIn}
-        />
+          disabled={isLoading || user.isLoggedIn}>
+            SUBMIT
+        </button>
       </form>
     </section>
   )
