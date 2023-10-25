@@ -99,7 +99,6 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
         <div className="flex justify-end w-56">
           <button data-cy="exit-button" onClick={(e) => modalHandler(e)}>X</button>
         </div>
-        <div className="flex flex-col items-center">
           <label className="label" htmlFor="firstName" data-cy="first-name-label">First Name</label>
           <input
             id="firstName"
@@ -111,8 +110,6 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setFirstName(e.target.value)}
           />
-        </div>
-        <div className="flex flex-col items-center">
           <label className="label" htmlFor="lastName" data-cy="last-name-label">Last Name</label>
           <input
             id="lastName"
@@ -124,8 +121,6 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setLastName(e.target.value)}
           />
-        </div>
-        <div className="flex flex-col items-center">
           <label className="label" htmlFor="pronouns" data-cy="pronouns-label">Pronouns</label>
           <input
             id="firstName"
@@ -137,8 +132,6 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setPronouns(e.target.value)}
           />
-        </div>
-        <div className="flex flex-col items-center">
           <label className="label" htmlFor="email" data-cy="email-label">Email</label>
           <input 
             id="email"
@@ -150,8 +143,6 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setEmail(e.target.value)}
           />
-        </div>
-        <div className="flex flex-col items-center">
           <label className="label" htmlFor="password" data-cy="password-label">Password</label>
           <input 
             id="password"
@@ -163,8 +154,6 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setPassword(e.target.value)}
           />
-        </div>
-        <div className="flex flex-col items-center">
           <label className="label" htmlFor="confirmPassword" data-cy="confirm-password-label">Confirm Password</label>
           <input 
             id="confirmPassword"
@@ -176,11 +165,9 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             required={true}
             onChange={e => setConfirmPassword(e.target.value)}
           />
-        </div>
         <div data-cy="password-match-message">
           {passwordChecker()}
         </div>
-        <div className="flex flex-col items-center">
           <label className="label" htmlFor="user-type" data-cy="user-type-label">User Type</label>
           <select id="user-type" data-cy="select-user-type" className="select select-sm"
             onChange={e => setUserType(Number(e.target.value))}
@@ -190,9 +177,8 @@ const SignUp:FC<SignUpProps> = ( { modalHandler } ) => {
             <option value="0">Student</option>
             <option value="1">Alum</option>
           </select>
-        </div>
         <input 
-          className={`btn btn-primary
+          className={`btn btn-primary btn-sm
             ${loadingPulseEffect()}`}
           type="submit" 
           value={buttonValue()}
