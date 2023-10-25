@@ -59,12 +59,12 @@ const Login = () => {
       {modalShow && <SignUp modalHandler={modalHandler}/>}
 
       <section className="flex flex-col items-center h-[40rem] place-content-center">
-        <form className="flex flex-col items-center" onSubmit={submitLogin}>
-          <div className="flex flex-col items-center">
-            <label htmlFor="userEmail" data-cy="email-label">Email</label>
+        <form className="join-vertical" onSubmit={submitLogin}>
+          <div>
+            <label className="label" htmlFor="userEmail" data-cy="email-label">Email</label>
             <input
               id="userEmail"
-              className="border border-black-300"
+              className="join-item input input-bordered input-primary"
               type="text"
               value={email}
               data-cy="user-email"

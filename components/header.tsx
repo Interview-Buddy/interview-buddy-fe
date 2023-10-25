@@ -8,7 +8,7 @@ const Header = () => {
   const user = useContext(AuthContext);
 
   return (
-    <header data-cy="header" className="w-screen bg-[#E4C1F9]">
+    <header data-cy="header" className="w-screen">
       <div className="max-w-screen-xl mx-auto flex justify-between">
         <h1 className="p-4 text-3xl">
           <Link href="/">

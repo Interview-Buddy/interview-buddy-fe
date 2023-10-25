@@ -23,7 +23,7 @@ export default function RootLayout({
   }) {
     return (
       <html lang="en" data-theme="emerald">
-        <body className='bg-[#A9DEF9]'>
+        <body className="bg-neutral">
           <QueryProvider>
             <AuthProvider>
               <Header />
