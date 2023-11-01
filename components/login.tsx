@@ -57,14 +57,20 @@ const Login = () => {
   return (
     <>
       {modalShow && <SignUp modalHandler={modalHandler}/>}
-
+      <button
+        className="btn btn-secondary"
+        onClick={e => modalHandler(e)}
+        data-cy="signup-button"
+        disabled={isLoading || user.isLoggedIn}>
+          Sign Up
+      </button>
       <section className="flex flex-col items-center h-[40rem] place-content-center">
-        <form className="flex flex-col items-center" onSubmit={submitLogin}>
-          <div className="flex flex-col items-center">
-            <label htmlFor="userEmail" data-cy="email-label">Email</label>
+        <form className="join-vertical" onSubmit={submitLogin}>
+          <div>
+            <label className="label" htmlFor="userEmail" data-cy="email-label">Email</label>
             <input
               id="userEmail"
-              className="border border-black-300"
+              className="join-item input input-bordered input-secondary"
               type="text"
               value={email}
               data-cy="user-email"
@@ -73,11 +79,11 @@ const Login = () => {
               onChange={e => setEmail(e.target.value)}
               />
           </div>
-          <div className="flex flex-col items-center">
-            <label htmlFor="userPassword" data-cy="password-label" className="mt-2">Password</label>
+          <div className="join-item">
+            <label htmlFor="userPassword" data-cy="password-label" className="label">Password</label>
             <input 
               id="userPassword"
-              className="border border-black-300"
+              className="join-item input input-bordered input-secondary"
               type="password"
               value={password}
               data-cy="user-password"
@@ -86,24 +92,21 @@ const Login = () => {
               onChange={e => setPassword(e.target.value)}
               />
           </div>
-          <input
-            className={`border border-black-300 mt-2 bg-[#D0F4DE] hover:cursor-pointer
-              hover:bg-[#bde1cb] disabled:cursor-not-allowed disabled:brightness-75
-              ${loadingPulseEffect()}`}
+          <button
+            className="join-item btn btn-primary"
             type="submit"
             data-cy="signin"
             value={buttonValue()}
             disabled={isLoading || user.isLoggedIn}
-          />
-        </form>
-        <button 
-          className={`border border-black-300 mt-2 bg-[#FF99C8] hover:bg-[#d16f9d]
-            disabled:cursor-not-allowed disabled:brightness-75 ${loadingPulseEffect()}`}
+            >Sign In</button>
+          {/* <button 
+          className="btn btn-secondary"
           onClick={e => modalHandler(e)}
           data-cy="signup-button"
           disabled={isLoading || user.isLoggedIn}
           >Sign Up
-        </button>
+         </button> */}
+        </form>
       </section>
     </>
   )
