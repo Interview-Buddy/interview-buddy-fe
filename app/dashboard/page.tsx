@@ -11,6 +11,7 @@ import AlumDashboard from "./@alumdash/page";
 import { getAuth } from "firebase/auth";
 import { app } from '../../configs/firebase.configs'
 import NotFound from "../not-found";
+import { getMeetings } from "../../api/user/meeting";
 
 const Dashboard = () => {
     const user = useContext(AuthContext)
@@ -19,7 +20,7 @@ const Dashboard = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     //Caused error when not set to any
     const calendarRef = useRef<any>();
-
+    const meetings = getMeetings();
     // if (!user.isLoggedIn) {
     //     return <NotFound />
     // }
