@@ -6,10 +6,13 @@ const AlumDashboard = () => {
     const user = useContext(AuthContext)
     const [interviewType, setInterviewType] = useState('');
     const [isLoading, setIsLoading] = useState<boolean>(true);
+    {console.log("USER:", user)}
     //Caused error when not set to any
     return (
     <div>
-        <h1>Alum Test Dash</h1>
+        <h1>Welcome, {user.firstName}</h1>
+        
+
     </div>
     );
 };
