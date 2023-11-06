@@ -25,8 +25,8 @@ const Dashboard = () => {
     // }
     
     return (
-        <div>{console.log("USER", user)}</div>
-            
+        // <div>{console.log("USER", user)}</div>
+        <AlumDashboard/>
         
         // user.userType === 'student' ? 
         // <StudentDashboard/> :
