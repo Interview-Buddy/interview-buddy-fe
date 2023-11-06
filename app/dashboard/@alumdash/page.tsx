@@ -9,10 +9,10 @@ const AlumDashboard = () => {
     {console.log("USER:", user)}
     //Caused error when not set to any
     return (
-    <div>
-        <h1>Welcome, {user.firstName}</h1>
-        
-
+    <div className="flex">
+        <h1 className="text-lg m-8">Welcome, Angie{user.firstName}</h1>
+        <button className="btn btn-outline m-8">Create New Interview</button>
+        <button className="btn btn-outline m-8">View Upcoming Interviews</button>
     </div>
     );
 };
