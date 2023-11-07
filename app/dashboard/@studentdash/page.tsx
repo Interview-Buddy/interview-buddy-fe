@@ -8,7 +8,8 @@ const StudentDashboard = () => {
     //Caused error when not set to any
     return (
         <div>
-            <h1>Student Test Dash</h1>
+            <h1>Welcome, {user.firstName}</h1>
+            <button className="btn btn-outline m-8">View Upcoming Interviews</button>
         </div>
     );
 };
